@@ -1,0 +1,18 @@
+﻿
+@model NetMVCBlogApp.Models.AdminDetailsModel
+
+<div class="about">
+    <div class="about-me">
+        <h2>
+            <span>About Me</span>
+        </h2>
+    </div>
+    <div class="about-me-image">
+        <img src="/Content/img/@Model.Image" alt="">
+    </div>
+    <div class="about-me-text">
+        @Model.AboutMe.Substring(0, 108)...
+        <a href="/Home/AboutMe">more</a>
+    </div>
+</div>
+

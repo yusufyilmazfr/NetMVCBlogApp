@@ -1,0 +1,97 @@
+﻿@model NetMVCBlogApp.Models.AdminLoginModel
+@{
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+<div class="login-content">
+    <form id="login-form" name="login-form">
+        <div class="login-img">
+            <img src="~/Content/img/admin.jpg" alt="admin-image">
+        </div>
+        <div class="login-uname">
+            <div style="width: 30px ;display: inline-block;">
+                <label for="username">
+                    <i class="fal fa-user-check"></i>
+                </label>
+            </div>
+            <input name="username" id="username" type="text" placeholder="John Mic" required>
+        </div>
+        <div class="login-passwd">
+            <div style="width: 30px ;display: inline-block;">
+                <label for="password">
+                    <i class="fal fa-key"></i>
+                </label>
+            </div>
+            <input name="password" id="password" type="password" placeholder="*******" required>
+        </div>
+        <div>
+            <button type="submit" class="login-btn" id="login-btn">Login</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("#login-form").submit(function (e) {
+
+            e.preventDefault();
+
+            $.ajax({
+                url: '/Account/Login/',
+                data: {
+                    username: $("#username").val(),
+                    password: $("#password").val()
+                },
+                type: 'POST',
+                success: function (data) {
+                    if (data == "yes") {
+                        document.location.href = "/Account";
+                    }
+                    else {
+                        alert("Geçersiz kullanıcı adı veya şifre!");
+                    }
+                }
+            });
+        });
+
+    });
+
+
+
+    //let form = document["forms"]["login-form"];
+
+    //form.addEventListener('submit', function (e) {
+
+    //    e.preventDefault();
+
+    //    let xhttp = new XMLHttpRequest();
+
+    //    let username = document.querySelector("#username").value;
+    //    let password = document.querySelector("#password").value;
+
+    //    xhttp.open("POST", "/Account/Login/", true);
+    //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //    xhttp.send("username=" + username + "&password=" + password);
+
+    //});
+
+    //function submitForm(e) {
+    //    let xhttp = new XMLHttpRequest();
+    //    let username = document.querySelector("#username").value;
+    //    let password = document.querySelector("#password").value;
+
+    //    //xhttp.onreadystatechange = function () {
+    //    //    if (this.readyState == 4 && this.status == 200) {
+    //    //        document.getElementById("demo").innerHTML = this.responseText;
+    //    //    }
+    //    //};
+
+    //    xhttp.open("POST", "/Account/Login/", true);
+    //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //    xhttp.send("username=" + username + "&password=" + password);
+
+    //}
+
+
+</script>

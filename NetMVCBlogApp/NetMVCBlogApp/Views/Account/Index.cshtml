@@ -1,0 +1,8 @@
+﻿@{
+    Layout = "~/Views/Shared/admin.cshtml";
+    NetMVCBlogApp.Entity.Admin admin = (NetMVCBlogApp.Entity.Admin)Session["admin"];
+}
+
+<h1>
+    Welcome back, @(admin.Name + " " + admin.LastName)
+</h1>
