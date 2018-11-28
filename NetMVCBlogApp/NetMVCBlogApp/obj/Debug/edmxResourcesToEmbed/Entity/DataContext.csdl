@@ -14,6 +14,7 @@
     <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="ShortDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -139,6 +140,7 @@
       <End Role="Comment" EntitySet="Comment" />
       <End Role="CommentResponse" EntitySet="CommentResponse" />
     </AssociationSet>
+    <EntitySet Name="Smtp" EntityType="BlogDBModel.Smtp" />
   </EntityContainer>
   <EntityType Name="CommentResponse">
     <Key>
@@ -169,4 +171,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Smtp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ServerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SenderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Port" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Ssl" Type="Boolean" Nullable="false" />
+  </EntityType>
 </Schema>

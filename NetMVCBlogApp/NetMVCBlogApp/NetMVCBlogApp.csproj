@@ -98,6 +98,40 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\admin.css" />
+    <Content Include="Content\dashboard\css\animate.min.css" />
+    <Content Include="Content\dashboard\css\bootstrap.min.css" />
+    <Content Include="Content\dashboard\css\demo.css" />
+    <Content Include="Content\dashboard\css\light-bootstrap-dashboard.css" />
+    <Content Include="Content\dashboard\css\pe-icon-7-stroke.css" />
+    <Content Include="Content\dashboard\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\dashboard\img\default-avatar.png" />
+    <Content Include="Content\dashboard\img\faces\face-0.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-1.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-2.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-3.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-4.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-5.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-6.jpg" />
+    <Content Include="Content\dashboard\img\faces\face-7.jpg" />
+    <Content Include="Content\dashboard\img\faces\tim_vector.jpe" />
+    <Content Include="Content\dashboard\img\favicon.ico" />
+    <Content Include="Content\dashboard\img\full-screen-image-3.jpg" />
+    <Content Include="Content\dashboard\img\loading-bubbles.svg" />
+    <Content Include="Content\dashboard\img\mask.png" />
+    <Content Include="Content\dashboard\img\new_logo.png" />
+    <Content Include="Content\dashboard\img\sidebar-1.jpg" />
+    <Content Include="Content\dashboard\img\sidebar-2.jpg" />
+    <Content Include="Content\dashboard\img\sidebar-3.jpg" />
+    <Content Include="Content\dashboard\img\sidebar-4.jpg" />
+    <Content Include="Content\dashboard\img\sidebar-5.jpg" />
+    <Content Include="Content\dashboard\img\tim_80x80.png" />
+    <Content Include="Content\dashboard\js\bootstrap-notify.js" />
+    <Content Include="Content\dashboard\js\bootstrap-select.js" />
+    <Content Include="Content\dashboard\js\bootstrap.min.js" />
+    <Content Include="Content\dashboard\js\chartist.min.js" />
+    <Content Include="Content\dashboard\js\demo.js" />
+    <Content Include="Content\dashboard\js\jquery.3.2.1.min.js" />
+    <Content Include="Content\dashboard\js\light-bootstrap-dashboard.js" />
     <Content Include="Content\img\person\he1.png" />
     <Content Include="Content\img\person\he2.png" />
     <Content Include="Content\img\person\he3.png" />
@@ -108,6 +142,7 @@
     <Content Include="Content\img\person\she3.png" />
     <Content Include="Content\img\person\she4.png" />
     <Content Include="Content\img\person\she5.png" />
+    <Content Include="Content\img\post\post5.jpg" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Entity\DataContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -181,6 +216,9 @@
     <Compile Include="Entity\Post.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Smtp.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Subscriber.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -192,6 +230,7 @@
     </Compile>
     <Compile Include="Models\AdminDetailsModel.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
+    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\BlogCommentModel.cs" />
     <Compile Include="Models\BlogCommentResponseModel.cs" />
     <Compile Include="Models\BlogDetailsModel.cs" />
@@ -208,6 +247,38 @@
     <Content Include="Entity\DataContext.edmx.diagram">
       <DependentUpon>DataContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\dashboard\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\dashboard\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\dashboard\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_buttons.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_cards.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_chartist.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_icons.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_inputs.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_labels.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_morphing-buttons.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_navbars.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_social-buttons.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_tabs.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_transparency.scss" />
+    <Content Include="Content\dashboard\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_alerts.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_buttons.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_cards.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_chartist.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_checkbox-radio-switch.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_dropdown.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_footers.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_inputs.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_misc.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_mixins.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_navbars.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_responsive.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_sidebar-and-main-panel.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_tables.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_typography.scss" />
+    <Content Include="Content\dashboard\sass\lbd\_variables.scss" />
+    <Content Include="Content\dashboard\sass\light-bootstrap-dashboard.scss" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\header-footer.cshtml" />
@@ -238,6 +309,9 @@
     <Content Include="Views\Shared\admin.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\User.cshtml" />
+    <Content Include="Views\Account\Blogs.cshtml" />
+    <Content Include="Views\Account\Comments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

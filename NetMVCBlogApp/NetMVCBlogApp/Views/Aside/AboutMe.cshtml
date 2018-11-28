@@ -8,10 +8,26 @@
         </h2>
     </div>
     <div class="about-me-image">
-        <img src="/Content/img/@Model.Image" alt="">
+        <img src="/Content/img/@Model.Image" alt="admin-image">
     </div>
     <div class="about-me-text">
-        @Model.AboutMe.Substring(0, 108)...
+        @{
+            if (Model.AboutMe!=null)
+            {
+                if (Model.AboutMe.Length<108)
+                {
+                    <span>
+                        @Model.AboutMe
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        @Model.AboutMe.Substring(0,108)...
+                    </span>
+                }
+            }
+        }
         <a href="/Home/AboutMe">more</a>
     </div>
 </div>

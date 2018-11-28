@@ -34,5 +34,6 @@ namespace NetMVCBlogApp.Entity
         public virtual DbSet<Subscriber> Subscriber { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<CommentResponse> CommentResponse { get; set; }
+        public virtual DbSet<Smtp> Smtp { get; set; }
     }
 }

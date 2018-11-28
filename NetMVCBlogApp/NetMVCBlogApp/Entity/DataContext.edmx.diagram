@@ -17,6 +17,7 @@
         <AssociationConnector Association="BlogDBModel.FK_Comment_Post" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BlogDBModel.CommentResponse" Width="1.5" PointX="7.5" PointY="7.125" />
         <AssociationConnector Association="BlogDBModel.FK_CommentResponse_Comment" />
+        <EntityTypeShape EntityType="BlogDBModel.Smtp" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Admin">
       <EntityTypeMapping TypeName="BlogDBModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
           <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -106,6 +107,19 @@
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Smtp">
+      <EntityTypeMapping TypeName="BlogDBModel.Smtp">
+        <MappingFragment StoreEntitySet="Smtp">
+          <ScalarProperty Name="Ssl" ColumnName="Ssl" />
+          <ScalarProperty Name="Port" ColumnName="Port" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ServerName" ColumnName="ServerName" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

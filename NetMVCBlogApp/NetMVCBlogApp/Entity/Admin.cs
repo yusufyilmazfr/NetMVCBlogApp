@@ -24,5 +24,6 @@ namespace NetMVCBlogApp.Entity
         public string Username { get; set; }
         public string Password { get; set; }
         public string ShortDescription { get; set; }
+        public string Mail { get; set; }
     }
 }

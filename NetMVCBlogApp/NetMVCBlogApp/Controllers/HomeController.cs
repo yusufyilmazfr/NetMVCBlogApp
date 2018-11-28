@@ -4,17 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NetMVCBlogApp.Entity;
+using NetMVCBlogApp.Models;
 
 namespace NetMVCBlogApp.Controllers
 {
     public class HomeController : Controller
     {
+        BlogDBEntities context = new BlogDBEntities();
+        
         // GET: Home
         public ActionResult Index()
         {
-            BlogDBEntities context = new BlogDBEntities();
-
-
             return View(context.Post.ToList());
         }
 
@@ -25,7 +25,15 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult AboutMe()
         {
-            return View();
+            AdminDetailsModel model = context.Admin.Select(i => new AdminDetailsModel
+            {
+                Name = i.Name,
+                LastName = i.Image,
+                AboutMe = i.AboutMe,
+                Image = i.Image
+            }).FirstOrDefault();
+
+            return View(model);
         }
     }
 }
