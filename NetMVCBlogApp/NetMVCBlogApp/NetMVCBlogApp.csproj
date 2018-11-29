@@ -236,6 +236,7 @@
     <Compile Include="Models\BlogDetailsModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CommentResponseModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -310,8 +311,13 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\User.cshtml" />
-    <Content Include="Views\Account\Blogs.cshtml" />
+    <Content Include="Views\Account\Posts.cshtml" />
     <Content Include="Views\Account\Comments.cshtml" />
+    <Content Include="Views\Account\Categories.cshtml" />
+    <Content Include="Views\Account\NewPost.cshtml" />
+    <Content Include="Views\Account\DeletePost.cshtml" />
+    <Content Include="Views\Account\NewCategorie.cshtml" />
+    <Content Include="Views\Account\DeleteCategorie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

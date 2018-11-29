@@ -1,13 +1,14 @@
-﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Category>
 @{
     Layout = "~/Views/Shared/admin.cshtml";
 }
 
+<a href="/Account/NewCategorie" class="btn" style="border:3px solid #9772D9; margin-bottom:20px">Create new categorie</a>
 
 <div class="card">
     <div class="header">
-        <h4 class="title">Striped Table with Hover</h4>
-        <p class="category">Here is a subtitle for this table</p>
+        <h4 class="title">Recent comments</h4>
+        <p class="category"> You can delete and update blogs from the right side.</p>
     </div>
     <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
@@ -15,27 +16,25 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th style="width:70px">Image</th>
                     <th>Name</th>
-                    <th>Category</th>
+                    <th>Description</th>
                     <th style="width:80px;">Edit</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var blog in Model)
+                @foreach (var category in Model)
                 {
                     <tr>
-                        <td>@blog.ID</td>
-                        <td><img width="100%" src="~/Content/img/post/@blog.Image" /></td>
-                        <td>@blog.Name</td>
-                        <td>@blog.Category.Name</td>
+                        <td>@category.ID</td>
+                        <td>@category.Name</td>
+                        <td>@category.Description</td>
                         <td class="td-actions text-right" style="display:flex; justify-content:flex-start">
                             <button type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-sm" data-original-title="Edit Task">
                                 <i class="fa fa-edit"></i>
                             </button>
-                            <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
-                                <i id="1" class="deleteBlog fa fa-times"></i>
-                            </button>
+                                <a href="/Account/DeleteCategorie/@category.ID" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
+                                    <i id="1" class="deleteBlog fa fa-times"></i>
+                                </a>
                         </td>
                     </tr>
                 }

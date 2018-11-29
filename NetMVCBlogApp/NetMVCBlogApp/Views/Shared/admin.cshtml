@@ -45,10 +45,11 @@
             -->
 
             <div class="sidebar-wrapper">
-                <div class="logo">
+                <div class="logo" style="display:flex; flex-direction:column; align-items:center">
                     <a href="http://yusufyilmaz.org" target="_blank" class="simple-text">
                         Yusuf Yılmaz
                     </a>
+                    <img width="80" src="~/Content/img/@(((NetMVCBlogApp.Entity.Admin)Session["admin"]).Image)" style="border-radius:100%" />
                 </div>
 
                 <ul class="nav">
@@ -67,9 +68,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/Account/Blogs/">
+                        <a href="/Account/Posts/">
                             <i class="pe-7s-news-paper"></i>
                             <p>Blog(s)</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Account/Categories/">
+                            <i class="pe-7s-wallet"></i>
+                            <p>Categorie(s)</p>
                         </a>
                     </li>
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NetMVCBlogApp.Entity;
+using System.Net;
 
 namespace NetMVCBlogApp.Controllers
 {
@@ -68,8 +69,9 @@ namespace NetMVCBlogApp.Controllers
         }
 
         [HttpPost]
-        public new ActionResult User(AdminModel model)
+        public new JsonResult User(AdminModel model)
         {
+
             if (ModelState.IsValid)
             {
                 Admin admin = context.Admin.First();
@@ -84,17 +86,144 @@ namespace NetMVCBlogApp.Controllers
 
                 context.SaveChanges();
 
-                return View(model);
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(null);
+        }
+
+        public ActionResult Posts()
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            return View(context.Post.ToList());
+        }
+
+        public ActionResult NewPost()
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            ViewBag.Categories = context.Category.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewPost(PostModel model)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ModelState.IsValid)
+            {
+                context.Post.Add(new Post()
+                {
+                    Name = model.Name,
+                    Text = model.Text,
+                    AddedDate = DateTime.Now,
+                    CategoryID = model.CategoryID,
+                    Image = "06-1-1440x1080.jpg"
+                });
+
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+
+            ViewBag.Categories = context.Category.ToList();
+
+            return View(model);
+        }
+
+        public ActionResult DeletePost(int? ID)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Post model = context.Post.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
             }
 
             return View(model);
         }
 
-        public ActionResult Blogs()
+        [HttpPost]
+        public ActionResult DeletePost(int ID)
         {
             if (Session["admin"] == null) { return RedirectToAction("Index"); }
 
-            return View(context.Post.ToList());
+            Post model = context.Post.Find(ID);
+            context.Post.Remove(model);
+            context.SaveChanges();
+
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult Categories()
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            return View(context.Category.ToList());
+        }
+
+        public ActionResult NewCategorie()
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewCategorie(Category model)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ModelState.IsValid)
+            {
+                context.Category.Add(model);
+                context.SaveChanges();
+
+                return RedirectToAction("Categories");
+            }
+
+            return View(model);
+        }
+
+        public ActionResult DeleteCategorie(int? ID)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Category model = context.Category.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategorie(int ID)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            Category model = context.Category.Find(ID);
+            context.Category.Remove(model);
+            context.SaveChanges();
+
+            return RedirectToAction("Categories");
         }
 
         public ActionResult Comments()
@@ -103,5 +232,8 @@ namespace NetMVCBlogApp.Controllers
 
             return View(context.Comment.ToList());
         }
+
     }
+
+
 }

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
+@{
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+<a href="/Account/NewPost" class="btn" style="border:3px solid #9772D9; margin-bottom:20px">Create new post</a>
+
+<div class="card">
+    <div class="header">
+        <h4 class="title">Recent comments</h4>
+        <p class="category"> You can delete and update blogs from the right side.</p>
+    </div>
+    <div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th style="width:70px">Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th style="width:80px;">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var blog in Model)
+                {
+                    <tr>
+                        <td>@blog.ID</td>
+                        <td><img width="100%" src="~/Content/img/post/@blog.Image" /></td>
+                        <td>@blog.Name</td>
+                        <td>@blog.Category.Name</td>
+                        <td class="td-actions text-right" style="display:flex; justify-content:flex-start">
+                            <button type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-sm" data-original-title="Edit Task">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <a href="/Account/DeletePost/@blog.ID" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
+                                <i id="1" class="deleteBlog fa fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

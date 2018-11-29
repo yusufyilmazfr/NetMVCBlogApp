@@ -11,23 +11,31 @@
         {
             <div class="blog">
                 <div class="blog-header">
-                    <a href="Blog/Details/@post.ID">
+                    <a href="/Blog/Details/@post.ID">
                         <h1>@post.Name</h1>
                     </a>
                 </div>
 
                 <div class="blog-image">
-                    <a href="Blog/Details/@post.ID">
+                    <a href="/Blog/Details/@post.ID">
                         <img src="~/Content/img/post/@post.Image" alt="">
                     </a>
                 </div>
                 <div class="blog-text">
-                    <p>
-                        @post.Text.Substring(0, 350)...
-                    </p>
+                    @*@post.Text.Substring(0, 350)...*@
+                    @{
+                        if (post.Text.Length > 350)
+                        {
+                            <p>@post.Text.Substring(0, 350);</p>
+                        }
+                        else
+                        {
+                            <p>@post.Text</p>
+                        }
+                    }
                 </div>
                 <div class="blog-read-more">
-                    <a href="Blog/Details/@post.ID">Read More <i class="fal fa-arrow-right" style="font-size: 14px;"></i></a>
+                    <a href="/Blog/Details/@post.ID">Read More <i class="fal fa-arrow-right" style="font-size: 14px;"></i></a>
                 </div>
             </div>
         }

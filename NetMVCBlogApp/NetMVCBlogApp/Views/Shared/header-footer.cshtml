@@ -82,40 +82,73 @@
                 <p>Subscribe your e-mail address and get to know about fresh stuff!</p>
             </div>
             <div class="signup-form">
-                <form name="mail-register" action="/Subscriber/Add" method="POST">
+                <form name="mail-register">
                     <input required type="email" name="subscribe" id="subscribe" placeholder="Your Email Address">
                     <button id="subscribe-signup" class="subscribe-signup" type="submit">Sign up</button>
                 </form>
 
                 <script>
 
-                    $(document).ready(function () {
 
-                        $("#subscribe-signup").click(function (e) {
+                    document.getElementById('subscribe-signup').addEventListener('click', function (e) {
 
-                            e.preventDefault()
 
-                            $.ajax({
-                                url: '/Subscriber/Add/',
-                                data: {
-                                    email: $("#subscribe").val(),
-                                },
-                                success: function (data) {
-                                    if (data=="yes") {
-                                        alert('Mailiniz dataya kayıt edildi :)');
-                                        alert('Blog yazılarımdan ilk sizin haberiniz olacağından hiç şüpheniz olmasın :)');
-                                    }
-                                    else {
-                                        alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                                    }
-                                },
-                                error: function () {
-                                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                        let data = {
+                            email: document.getElementById('subscribe').value
+                        }
+
+
+
+                        e.preventDefault();
+
+                        let xhttp = new XMLHttpRequest();
+
+                        xhttp.open('POST', '/Subscriber/Add/');
+
+                        xhttp.onload = () => {
+                            if (xhttp.status == 200) {
+                                if (xhttp.responseText == "yes") {
+                                    alert("Success! <3");
                                 }
-                            });
-                        });
+                                else {
+                                    alert("Ops!, try again later :(");
+                                }
+                            }
+                        }
 
+                        xhttp.setRequestHeader('Content-type', 'application/json');
+
+                        xhttp.send(JSON.stringify(data));
                     });
+
+
+                                    //$(document).ready(function () {
+
+                                    //    $("#subscribe-signup").click(function (e) {
+
+                                    //        e.preventDefault()
+
+                                    //        $.ajax({
+                                    //            url: '/Subscriber/Add/',
+                                    //            data: {
+                                    //                email: $("#subscribe").val(),
+                                    //            },
+                                    //            success: function (data) {
+                                    //                if (data=="yes") {
+                                    //                    alert('Mailiniz dataya kayıt edildi :)');
+                                    //                    alert('Blog yazılarımdan ilk sizin haberiniz olacağından hiç şüpheniz olmasın :)');
+                                    //                }
+                                    //                else {
+                                    //                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                                    //                }
+                                    //            },
+                                    //            error: function () {
+                                    //                alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                                    //            }
+                                    //        });
+                                    //    });
+
+                                    //});
 
                 </script>
             </div>
