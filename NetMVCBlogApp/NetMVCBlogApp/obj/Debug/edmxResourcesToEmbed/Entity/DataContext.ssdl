@@ -5,14 +5,14 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Mail" Type="nvarchar" MaxLength="30" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="60" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="20" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="20" />
-    <Property Name="Image" Type="nvarchar" MaxLength="50" />
-    <Property Name="AboutMe" Type="nvarchar(max)" />
-    <Property Name="ShortDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AboutMe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="AddedDate" Type="datetime" Nullable="false" />
     <Property Name="ModifiedDate" Type="datetime" />
   </EntityType>

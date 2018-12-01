@@ -18,5 +18,6 @@ namespace NetMVCBlogApp.Models
 
         [Required]
         public int CategoryID { get; set; }
+
     }
 }

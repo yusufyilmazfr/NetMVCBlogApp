@@ -26,11 +26,15 @@
                     @{
                         if (post.Text.Length > 350)
                         {
-                            <p>@post.Text.Substring(0, 350);</p>
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text.Substring(0, 350)))
+                            </p>
                         }
                         else
                         {
-                            <p>@post.Text</p>
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text))
+                            </p>
                         }
                     }
                 </div>

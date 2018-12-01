@@ -1,8 +1,8 @@
 ﻿@model NetMVCBlogApp.Models.PostModel
 @{
-    ViewBag.Title = "NewPost";
     Layout = "~/Views/Shared/admin.cshtml";
 }
+
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -11,7 +11,8 @@
                 <h4 class="title">New Post</h4>
             </div>
             <div class="content">
-                <form id="post-form">
+                @using (Html.BeginForm(FormMethod.Post))
+                {
                     @*<div class="row">
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="form-group">
@@ -20,6 +21,7 @@
                                 </div>
                             </div>
                         </div>*@
+                
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
@@ -32,62 +34,24 @@
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
                                 <label>Post Text</label>
-                                @Html.TextAreaFor(model => model.Text, new { @class = "form-control", placeholder = "Here can be your post content", rows = 7 })
+                                @Html.TextAreaFor(model => model.Text, new { @class = "form-control ckeditor", placeholder = "Here can be your post content", rows = 7 })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-md-offset-1">
                             <label>Category Name</label>
-
-                            <select class="form-control" id="CategoryID">
-                                @foreach (var category in ViewBag.Categories)
-                                {
-                                    <option value="@category.ID">@category.Name</option>
-                                }
-                            </select>
+                            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="col-md-10 col-md-offset-1">
                         <button type="submit" class="btn btn-info btn-fill pull-right" id="create-post">Create new post</button>
                     </div>
                     <div class="clearfix"></div>
-                </form>
+
+                }
+
             </div>
         </div>
     </div>
 </div>
-
-<script>
-
-    document.getElementById('post-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-
-        let data = {
-            Name: document.getElementById('Name').value,
-            Text: document.getElementById('Text').value,
-            CategoryID: document.getElementById('CategoryID').value
-        }
-
-        let xhttp = new XMLHttpRequest();
-
-        xhttp.open('POST', '/Account/newPost/');
-
-        xhttp.onload = () => {
-            if (xhttp.status == 200) {
-                if (JSON.parse(xhttp.responseText) == null) {
-                    alert("yes:DD");
-                }
-                else {
-                    alert("ops!");
-                }
-            }
-        }
-
-        xhttp.setRequestHeader('Content-type', 'Application/json');
-
-        xhttp.send(JSON.stringify(data));
-
-    })
-</script>

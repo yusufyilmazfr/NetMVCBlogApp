@@ -15,7 +15,7 @@ namespace NetMVCBlogApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(context.Post.ToList());
+            return View(context.Post.Where(i=>i.isValid).OrderByDescending(i=>i.ID).ToList());
         }
 
         public ActionResult Contact()

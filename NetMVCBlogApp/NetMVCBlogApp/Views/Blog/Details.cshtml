@@ -15,7 +15,7 @@
 
     <div class="blog-text">
         <p>
-            @Model.Text
+            @Html.Raw((HttpUtility.HtmlDecode(Model.Text)))
         </p>
     </div>
 

@@ -103,10 +103,12 @@ namespace NetMVCBlogApp.Controllers
         {
             if (Session["admin"] == null) { return RedirectToAction("Index"); }
 
-            ViewBag.Categories = context.Category.ToList();
+            ViewBag.CategoryID = new SelectList(context.Category, "ID", "Name");
+
             return View();
         }
 
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult NewPost(PostModel model)
         {
@@ -117,7 +119,7 @@ namespace NetMVCBlogApp.Controllers
                 context.Post.Add(new Post()
                 {
                     Name = model.Name,
-                    Text = model.Text,
+                    Text = HttpUtility.HtmlEncode(model.Text),
                     AddedDate = DateTime.Now,
                     CategoryID = model.CategoryID,
                     Image = "06-1-1440x1080.jpg"
@@ -128,11 +130,54 @@ namespace NetMVCBlogApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            return View(model);
+        }
 
-            ViewBag.Categories = context.Category.ToList();
+
+        public ActionResult EditPost(int? ID)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Post model = context.Post.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.CategoryID = new SelectList(context.Category, "ID", "Name");
+
+
+            model.Text = HttpUtility.HtmlDecode(model.Text);
+            return View(model);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult EditPost(Post model)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ModelState.IsValid)
+            {
+                Post post = context.Post.Find(model.ID);
+                post.Text = HttpUtility.HtmlEncode(model.Text);
+                post.Name = model.Name;
+                post.CategoryID = model.CategoryID;
+                post.isValid = model.isValid;
+
+                context.SaveChanges();
+                return RedirectToAction("Posts");
+            }
 
             return View(model);
         }
+
 
         public ActionResult DeletePost(int? ID)
         {
