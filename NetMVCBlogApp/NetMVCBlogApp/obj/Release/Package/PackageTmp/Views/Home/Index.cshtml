@@ -1,0 +1,61 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
+
+<!-- Content Start -->
+<div id="Content">
+
+
+    <!-- Article Start -->
+    <div class="article">
+
+        @foreach (var post in Model)
+        {
+            <div class="blog">
+                <div class="blog-header">
+                    <a href="/Blog/Details/@post.ID">
+                        <h1>@post.Name</h1>
+                    </a>
+                </div>
+
+                <div class="blog-image">
+                    <a href="/Blog/Details/@post.ID">
+                        <img src="~/Content/img/post/@post.Image" alt="">
+                    </a>
+                </div>
+                <div class="blog-text">
+                    @*@post.Text.Substring(0, 350)...*@
+                    @{
+                        if (post.Text.Length > 350)
+                        {
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text.Substring(0, 350)))
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text))
+                            </p>
+                        }
+                    }
+                </div>
+                <div class="blog-read-more">
+                    <a href="/Blog/Details/@post.ID">Read More <i class="fal fa-arrow-right" style="font-size: 14px;"></i></a>
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+    <!-- Article End  -->
+    <!-- Aside Start -->
+    <div class="aside">
+        @Html.Action("AboutMe", "Aside")
+        @Html.Action("CategoryList", "Aside")
+        @Html.Action("RecentlyPost", "Aside")
+    </div>
+    <!-- Aside End -->
+
+</div>
+<!-- Content End -->

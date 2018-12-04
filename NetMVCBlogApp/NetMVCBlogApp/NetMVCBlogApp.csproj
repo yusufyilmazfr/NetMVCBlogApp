@@ -490,7 +490,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\asdasdasdasdController.cs" />
     <Compile Include="Controllers\AsideController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -552,6 +551,7 @@
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CommentResponseModel.cs" />
+    <Compile Include="Models\EditCommentModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -650,11 +650,10 @@
     <Content Include="Views\Account\NewCategorie.cshtml" />
     <Content Include="Views\Account\DeleteCategorie.cshtml" />
     <Content Include="Views\Account\EditPost.cshtml" />
-    <Content Include="Views\asdasdasdasd\Create.cshtml" />
-    <Content Include="Views\asdasdasdasd\Delete.cshtml" />
-    <Content Include="Views\asdasdasdasd\Details.cshtml" />
-    <Content Include="Views\asdasdasdasd\Edit.cshtml" />
-    <Content Include="Views\asdasdasdasd\Index.cshtml" />
+    <Content Include="Views\Account\EditCategorie.cshtml" />
+    <Content Include="Views\Account\DeleteComment.cshtml" />
+    <Content Include="Views\Account\EditComment.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

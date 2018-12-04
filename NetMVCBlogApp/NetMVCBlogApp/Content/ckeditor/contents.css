@@ -11,19 +11,13 @@ body
 	font-size: 12px;
 
 	/* Text color */
-	color: #333;
-
 	/* Remove the background color to make it transparent. */
-	background-color: #fff;
-
-	margin: 20px;
 }
 
 .cke_editable
 {
 	font-size: 13px;
 	line-height: 1.6;
-
 	/* Fix for missing scrollbars with RTL texts. (#10488) */
 	word-wrap: break-word;
 }
@@ -38,11 +32,11 @@ blockquote
 	border-width: 0;
 }
 
-.cke_contents_ltr blockquote
-{
-	padding-left: 20px;
-	padding-right: 8px;
-	border-left-width: 5px;
+
+blockquote {
+    padding-left: 20px;
+    padding-right: 8px;
+    border-left-width: 5px;
 }
 
 .cke_contents_rtl blockquote

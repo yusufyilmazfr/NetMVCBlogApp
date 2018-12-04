@@ -19,5 +19,6 @@ namespace NetMVCBlogApp.Models
 
         [Required]
         public string Text { get; set; }
+
     }
 }

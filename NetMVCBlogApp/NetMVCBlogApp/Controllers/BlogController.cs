@@ -29,7 +29,7 @@ namespace NetMVCBlogApp.Controllers
                 Text = i.Text,
                 addedDate = i.AddedDate,
 
-                Comments = i.Comment.Select(j => new BlogCommentModel
+                Comments = i.Comment.Where(k=>k.isValid).Select(j => new BlogCommentModel
                 {
                     CommentID = j.ID,
                     Name = j.Name,
@@ -37,7 +37,7 @@ namespace NetMVCBlogApp.Controllers
                     Image = j.Image,
                     AddedDate = j.AddedDate,
 
-                    CommentResponses = j.CommentResponse.Select(k => new BlogCommentResponseModel
+                    CommentResponses = j.CommentResponse.Where(k=>k.isValid).Select(k => new BlogCommentResponseModel
                     {
                         Name = k.Name,
                         Text = k.Text,

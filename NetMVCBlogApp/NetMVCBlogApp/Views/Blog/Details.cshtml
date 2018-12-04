@@ -1,6 +1,8 @@
 ﻿@model NetMVCBlogApp.Models.BlogDetailsModel
 
-
+@section ck_editor{
+    <link rel="stylesheet" href="~/Content/ckeditor/contents.css" />
+}
 
 <div class="blog-details">
 
@@ -112,7 +114,7 @@
             <div class="post-response">
                 <div class="comment-page">
                     <form action="/Blog/AddCommentResponse" method="POST">
-                        <input type="hidden" id="responseID" name="CommentID" value="@comment.CommentID"/>
+                        <input type="hidden" id="responseID" name="CommentID" value="@comment.CommentID" />
                         <div class="add-comment">
                             <div>
                                 <div><label for="response-name">Name</label></div>
@@ -145,7 +147,7 @@
                 <div class="add-comment">
                     <div>
                         <div><label for="comment-name">Name</label></div>
-                        <input required type="text" name="Name" id="comment-name"  placeholder="Steve Mcqueen">
+                        <input required type="text" name="Name" id="comment-name" placeholder="Steve Mcqueen">
                     </div>
                     <div>
                         <div><label for="comment-mail">Email</label></div>
@@ -184,7 +186,7 @@
                         Text: $("#comment-textarea").val()
                     },
                     success: function (data) {
-                        if (data=="yes") {
+                        if (data == "yes") {
                             alert("Yorum gönderme işlemi başarılı!");
                         }
                         else {

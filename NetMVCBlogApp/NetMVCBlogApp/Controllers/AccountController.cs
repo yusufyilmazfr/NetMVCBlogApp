@@ -130,6 +130,8 @@ namespace NetMVCBlogApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryID = new SelectList(context.Category, "ID", "Name");
+
             return View(model);
         }
 
@@ -177,7 +179,6 @@ namespace NetMVCBlogApp.Controllers
 
             return View(model);
         }
-
 
         public ActionResult DeletePost(int? ID)
         {
@@ -231,7 +232,42 @@ namespace NetMVCBlogApp.Controllers
 
             if (ModelState.IsValid)
             {
+                if (context.Category.Any(i => i.Name == model.Name))
+                {
+                    return View(model);
+                }
                 context.Category.Add(model);
+                context.SaveChanges();
+
+                return RedirectToAction("Categories");
+            }
+
+            return View(model);
+        }
+
+        public ActionResult EditCategorie(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Category model = context.Category.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditCategorie(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
 
                 return RedirectToAction("Categories");
@@ -264,8 +300,17 @@ namespace NetMVCBlogApp.Controllers
         {
             if (Session["admin"] == null) { return RedirectToAction("Index"); }
 
-            Category model = context.Category.Find(ID);
-            context.Category.Remove(model);
+            var posts = context.Post.Where(i => i.CategoryID == ID).ToList();
+
+            foreach (Post item in posts)
+            {
+                item.CategoryID = context.Category.Where(i => i.Name == "General").Select(i => i.ID).FirstOrDefault();
+            }
+
+
+            Category selectedCategory = context.Category.Find(ID);
+            context.Category.Remove(selectedCategory);
+
             context.SaveChanges();
 
             return RedirectToAction("Categories");
@@ -276,6 +321,78 @@ namespace NetMVCBlogApp.Controllers
             if (Session["admin"] == null) { return RedirectToAction("Index"); }
 
             return View(context.Comment.ToList());
+        }
+
+        public ActionResult DeleteComment(int? ID)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Comment model = context.Comment.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(int ID)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            Comment comment = context.Comment.Find(ID);
+            context.Comment.Remove(comment);
+
+            context.SaveChanges();
+
+            return RedirectToAction("Comments");
+        }
+
+        public ActionResult EditComment(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Comment model = context.Comment.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditComment(EditCommentModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Comment comment = context.Comment.Find(model.ID);
+
+                comment.Name = model.Name;
+                comment.Mail = model.Mail;
+                comment.Text = model.Text;
+                comment.Image = model.Image;
+                comment.isValid = model.isValid;
+                comment.ModifiedDate = DateTime.Now;
+                comment.PostID = model.PostID;
+
+                context.SaveChanges();
+
+                return RedirectToAction("Comments");
+            }
+
+            return View(model);
         }
 
     }

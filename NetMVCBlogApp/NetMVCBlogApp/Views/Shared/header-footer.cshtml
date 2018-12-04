@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="~/Content/css/style.css">
     <link rel="stylesheet" href="~/Content/css/fa/css/all.css">
+    @RenderSection("ck_editor", false)
+
 
 
     <script src="~/Content/js/jquery.js"></script>
@@ -123,33 +125,33 @@
                     });
 
 
-                                    //$(document).ready(function () {
+                                                                    //$(document).ready(function () {
 
-                                    //    $("#subscribe-signup").click(function (e) {
+                                                                    //    $("#subscribe-signup").click(function (e) {
 
-                                    //        e.preventDefault()
+                                                                    //        e.preventDefault()
 
-                                    //        $.ajax({
-                                    //            url: '/Subscriber/Add/',
-                                    //            data: {
-                                    //                email: $("#subscribe").val(),
-                                    //            },
-                                    //            success: function (data) {
-                                    //                if (data=="yes") {
-                                    //                    alert('Mailiniz dataya kayıt edildi :)');
-                                    //                    alert('Blog yazılarımdan ilk sizin haberiniz olacağından hiç şüpheniz olmasın :)');
-                                    //                }
-                                    //                else {
-                                    //                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                                    //                }
-                                    //            },
-                                    //            error: function () {
-                                    //                alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                                    //            }
-                                    //        });
-                                    //    });
+                                                                    //        $.ajax({
+                                                                    //            url: '/Subscriber/Add/',
+                                                                    //            data: {
+                                                                    //                email: $("#subscribe").val(),
+                                                                    //            },
+                                                                    //            success: function (data) {
+                                                                    //                if (data=="yes") {
+                                                                    //                    alert('Mailiniz dataya kayıt edildi :)');
+                                                                    //                    alert('Blog yazılarımdan ilk sizin haberiniz olacağından hiç şüpheniz olmasın :)');
+                                                                    //                }
+                                                                    //                else {
+                                                                    //                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                                                                    //                }
+                                                                    //            },
+                                                                    //            error: function () {
+                                                                    //                alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                                                                    //            }
+                                                                    //        });
+                                                                    //    });
 
-                                    //});
+                                                                    //});
 
                 </script>
             </div>

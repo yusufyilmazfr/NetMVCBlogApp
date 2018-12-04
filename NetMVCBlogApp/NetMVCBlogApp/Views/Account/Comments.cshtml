@@ -32,12 +32,15 @@
                         <td>@comment.Mail</td>
                         <td>@comment.Text</td>
                         <td class="td-actions text-right" style="display:flex; justify-content:flex-start">
-                            <button type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-sm" data-original-title="Edit Task">
+                            <a href="/Account/EditComment/@comment.ID" type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-sm" data-original-title="Edit Task">
                                 <i class="fa fa-edit"></i>
-                            </button>
-                            <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
-                                <i id="deleteComment" class="fa fa-times"></i>
-                            </button>
+                            </a>
+                            <a href="/Account/DeleteComment/@comment.ID" type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-primary btn-simple btn-sm" type="button" data-original-title="See post">
+                                <i class="far fa-eye"></i>
+                            </a>
                         </td>
                     </tr>
                 }
