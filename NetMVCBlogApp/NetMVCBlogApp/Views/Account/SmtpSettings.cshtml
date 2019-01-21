@@ -1,0 +1,95 @@
+﻿@model NetMVCBlogApp.Entity.Smtp
+@{
+    ViewBag.Title = "SmtpSettings";
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Edit SMTP Informations</h4>
+                    </div>
+                    <div class="content">
+
+                        @Html.HiddenFor(model => model.ID)
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ServerName)
+                                    @Html.TextBoxFor(model => model.ServerName, new { @class = "form-control", @maxlength = "50", required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserName)
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @maxlength = "50", required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password)
+                                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @maxlength = "50", @type = "password", required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Port)
+                                    @Html.TextBoxFor(model => model.Port, new { @class = "form-control", @maxlength = "4", @type = "number", required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="form-group" style="margin-top:15px">
+                                    @Html.LabelFor(model => model.Ssl, new { Style = "display:block" })
+                                    @Html.CheckBoxFor(model => model.Ssl, new { @class = "custom-control-input" })
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.Label("Email account for contact page")
+                                    @Html.TextBoxFor(model => model.ReceiverName, new { @class = "form-control", @maxlength = "50", required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SenderName)
+                                    @Html.TextBoxFor(model => model.SenderName, new { @class = "form-control", @maxlength = "50", required = "required" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div style="margin-right:10px">
+                                <button type="submit" class="btn btn-info btn-fill pull-right" id="send">Update Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type='hidden'][name='Ssl']").remove();
+    });
+</script>

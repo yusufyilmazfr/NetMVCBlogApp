@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using NetMVCBlogApp.Entity;
 using System.Net;
+using System.IO;
+using System.Data.Entity.Validation;
 
 namespace NetMVCBlogApp.Controllers
 {
@@ -21,6 +23,30 @@ namespace NetMVCBlogApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public string ForgetPassword()
+        {
+            try
+            {
+                string tempPassword = new Random().Next(88888888, 99999999).ToString();
+
+                context.Admin.FirstOrDefault().Password = CreateMD5.Create(tempPassword);
+                context.SaveChanges();
+
+                Mail mail = new Mail();
+                bool result = mail.SendNewPassword(context.Smtp.FirstOrDefault(), context.Admin.Select(i => i.Mail).FirstOrDefault(), tempPassword);
+
+                if (result)
+                    return "succeed";
+
+                return "failed";
+            }
+            catch (Exception)
+            {
+                return "failed";
+            }
+        }
+
         public ActionResult Login()
         {
             if (Session["admin"] != null) { return RedirectToAction("Index"); }
@@ -33,14 +59,16 @@ namespace NetMVCBlogApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (context.Admin.Where(i => i.Username == model.username && i.Password == model.password).Any())
-                {
-                    Session["admin"] = context.Admin.Where(i => i.Username == model.username && i.Password == model.password).First();
+                string password = CreateMD5.Create(model.password);
 
-                    return "yes";
+                if (context.Admin.Where(i => i.Username == model.username && i.Password == password).Any())
+                {
+                    Session["admin"] = context.Admin.Where(i => i.Username == model.username && i.Password == password).First();
+
+                    return "succeed";
                 }
             }
-            return "no";
+            return "failed";
         }
 
         public ActionResult Logout()
@@ -53,36 +81,49 @@ namespace NetMVCBlogApp.Controllers
         {
             if (Session["admin"] == null) { return RedirectToAction("Index"); }
 
-            AdminModel model = context.Admin.Select(i => new AdminModel()
-            {
-                Username = i.Username,
-                Name = i.Name,
-                Mail = i.Mail,
-                LastName = i.LastName,
-                AboutMe = i.AboutMe,
-                Image = i.Image,
-                ShortDescription = i.ShortDescription
-
-            }).First();
-
-            return View(model);
+            return View(context.Admin.First());
         }
 
         [HttpPost]
-        public new JsonResult User(AdminModel model)
+        public new JsonResult User(Admin model)
         {
+
+            Admin admin = context.Admin.First();
+
+            model.ModifiedDate = DateTime.Now;
+
+
+            HttpPostedFileBase adminImage = Request.Files.Get("uploadPhoto");
 
             if (ModelState.IsValid)
             {
-                Admin admin = context.Admin.First();
+                if (adminImage != null && adminImage.ContentLength > 0)
+                {
+                    string ext = Path.GetExtension(adminImage.FileName).ToUpper();
 
-                admin.Username = model.Username;
-                admin.Name = model.Name;
-                admin.LastName = model.LastName;
-                admin.Mail = model.Mail;
-                admin.ShortDescription = model.ShortDescription;
-                admin.AboutMe = model.AboutMe;
-                admin.Image = "admin.jpg";
+                    if (ext == ".JPEG" || ext == ".PNG" || ext == ".JPG")
+                    {
+                        string path = Server.MapPath("~/Content/img/admin") + ext.ToLower();
+
+                        adminImage.SaveAs(path);
+
+                        model.Image = "admin" + ext.ToLower();
+                    }
+                }
+                else
+                {
+                    model.Image = "admin.jpg";
+                }
+
+
+                context.Entry<Admin>(model).State = System.Data.Entity.EntityState.Modified;
+
+                context.Entry<Admin>(model).Property("Password").IsModified = false;
+
+                //context.Entry<Admin>(model).State = System.Data.Entity.EntityState.Modified;
+
+                //context.Entry<Admin>(model).Property(i => i.Password).IsModified = false;
+                //context.Entry<Admin>(model).Property(i => i.AddedDate).IsModified = false;
 
                 context.SaveChanges();
 
@@ -112,29 +153,56 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public ActionResult NewPost(PostModel model)
         {
+
             if (Session["admin"] == null) { return RedirectToAction("Index"); }
 
             if (ModelState.IsValid)
             {
-                context.Post.Add(new Post()
+
+                HttpPostedFileBase file = Request.Files.Get("uploadPhoto");
+
+                if (file != null && file.ContentLength > 0)
                 {
-                    Name = model.Name,
-                    Text = HttpUtility.HtmlEncode(model.Text),
-                    AddedDate = DateTime.Now,
-                    CategoryID = model.CategoryID,
-                    Image = "06-1-1440x1080.jpg"
-                });
+                    string ext = Path.GetExtension(file.FileName).ToUpper();
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
 
-                context.SaveChanges();
+                    string path = string.Empty;
 
-                return RedirectToAction("Index");
+                    if (ext == ".JPEG" || ext == ".PNG" || ext == ".JPG")
+                    {
+                        path = Server.MapPath(string.Format("~/Content/img/post/{0}{1}", fileName, ext));
+
+                        while (System.IO.File.Exists(path))
+                        {
+                            path += new Random().Next(8888);
+                        }
+
+                        file.SaveAs(path);
+                    }
+
+
+                    context.Post.Add(new Post()
+                    {
+                        Name = model.Name,
+                        Text = HttpUtility.HtmlEncode(model.Text),
+                        AddedDate = DateTime.Now,
+                        CategoryID = model.CategoryID,
+                        Image = file.FileName,
+                        SeoLink = new CreateFriendlyUrl().GenerateSlug(model.Name)
+                    });
+
+
+                    context.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+
             }
 
             ViewBag.CategoryID = new SelectList(context.Category, "ID", "Name");
 
             return View(model);
         }
-
 
         public ActionResult EditPost(int? ID)
         {
@@ -357,6 +425,8 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult EditComment(int? ID)
         {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
             if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -373,7 +443,7 @@ namespace NetMVCBlogApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditComment(EditCommentModel model)
+        public ActionResult EditComment(Comment model)
         {
             if (ModelState.IsValid)
             {
@@ -387,6 +457,16 @@ namespace NetMVCBlogApp.Controllers
                 comment.ModifiedDate = DateTime.Now;
                 comment.PostID = model.PostID;
 
+                //model.ModifiedDate = DateTime.Now;
+
+                //context.Entry<Comment>(model).State = System.Data.Entity.EntityState.Modified;
+
+                //context.Entry<Comment>(model).Property(i => i.Image).IsModified = false;
+                //context.Entry<Comment>(model).Property(i => i.Mail).IsModified = false;
+                //context.Entry<Comment>(model).Property(i => i.Post).IsModified = false;
+                //context.Entry<Comment>(model).Property(i => i.PostID).IsModified = false;
+
+
                 context.SaveChanges();
 
                 return RedirectToAction("Comments");
@@ -395,6 +475,71 @@ namespace NetMVCBlogApp.Controllers
             return View(model);
         }
 
+        public ActionResult SmtpSettings()
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            return View(context.Smtp.FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult SmtpSettings(Smtp smtp)
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    context.Entry<Smtp>(smtp).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    return View(smtp);
+                }
+            }
+            return View(smtp);
+        }
+
+        public ActionResult PasswordSettings()
+        {
+            if (Session["admin"] == null) { return RedirectToAction("Index"); }
+
+            PasswordModel passwordModel = new PasswordModel()
+            {
+                LastPassword = context.Admin.Select(i => i.Password).FirstOrDefault()
+            };
+
+            return View();
+        }
+
+        [HttpPost]
+        public string PasswordSettings(PasswordModel model)
+        {
+
+            string adminPassword = context.Admin.Select(i => i.Password).FirstOrDefault();
+            string lastPassword = CreateMD5.Create(model.LastPassword);
+
+            if (ModelState.IsValid)
+            {
+                if (adminPassword.Equals(lastPassword) && model.NewPassword.Equals(model.ConfirmPassword))
+                {
+                    Admin admin = context.Admin.FirstOrDefault();
+                    admin.Password = CreateMD5.Create(model.NewPassword);
+
+                    Session["admin"] = admin;
+
+                    context.SaveChanges();
+
+                    return "succeed";
+                }
+            }
+
+            return "failed";
+        }
     }
 
 

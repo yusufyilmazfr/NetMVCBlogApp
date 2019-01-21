@@ -40,61 +40,22 @@
         </h4>
     </div>
 
-    @if (Model.Comments.Count > 0)
-    {
+    <div id="tempId" class="tempId">
+        @if (Model.Comments.Count > 0)
 
-        foreach (var comment in Model.Comments)
         {
-            <div class="comment-content" style="position:relative">
-                <div class="comment-image">
-                    <img src="~/Content/img/person/@comment.Image" alt="person comment">
-                </div>
-                <div class="comment-base">
-                    <div class="person-name">
-                        <h5>
-                            <span>@comment.Name</span>
-                        </h5>
-                    </div>
-                    <div class="comment-date">
-                        <span>AUGUST 2, 2016 AT 6:51 PM</span>
-                    </div>
-                    <div class="comment-text">
-                        <p>
-                            @comment.Text
-                        </p>
-                    </div>
-                </div>
-                <div class="reply" style="width:50px; height:20px; color:#000; font-weight:700; cursor:pointer; position:absolute; bottom:0; right:0; text-align:center">
-                    Reply
-                </div>
 
-
-                @*<script>
-
-                        $(".reply").click(function () {
-                            $(".comment-response").each(function (index) {
-                                //console.log(index);
-                                console.log($(this));
-                            });
-                        });
-
-                    </script>*@
-
-            </div>
-
-
-            if (comment.CommentResponses.Count > 0)
+            foreach (var comment in Model.Comments)
             {
-                foreach (var response in comment.CommentResponses)
-                {
-                    <div class="comment-response">
+                <div>
+                    <div class="comment-content" style="position:relative">
                         <div class="comment-image">
-                            <img src="~/Content/img/person/@response.Image" alt="person comment">
+                            <img src="~/Content/img/person/@comment.Image" alt="person comment">
                         </div>
                         <div class="comment-base">
                             <div class="person-name">
                                 <h5>
-                                    <span>@response.Name</span>
+                                    <span>@comment.Name</span>
                                 </h5>
                             </div>
                             <div class="comment-date">
@@ -102,129 +63,209 @@
                             </div>
                             <div class="comment-text">
                                 <p>
-                                    @response.Text
+                                    @comment.Text
                                 </p>
                             </div>
                         </div>
+                        <div class="reply" id="reply" style="width:50px; height:20px; color:#000; font-weight:700; cursor:pointer; position:absolute; bottom:0; right:0; text-align:center">
+                            Reply
+                        </div>
+
                     </div>
 
-                }
-            }
 
-            <div class="post-response">
-                <div class="comment-page">
-                    <form action="/Blog/AddCommentResponse" method="POST">
-                        <input type="hidden" id="responseID" name="CommentID" value="@comment.CommentID" />
-                        <div class="add-comment">
-                            <div>
-                                <div><label for="response-name">Name</label></div>
-                                <input required type="text" name="Name" id="response-name">
+                    @if (comment.CommentResponses.Count > 0)
+                    {
+                        foreach (var response in comment.CommentResponses)
+                        {
+                            <div class="comment-response">
+                                <div class="comment-image">
+                                    <img src="~/Content/img/person/@response.Image" alt="person comment">
+                                </div>
+                                <div class="comment-base">
+                                    <div class="person-name">
+                                        <h5>
+                                            <span>@response.Name</span>
+                                        </h5>
+                                    </div>
+                                    <div class="comment-date">
+                                        <span>AUGUST 2, 2016 AT 6:51 PM</span>
+                                    </div>
+                                    <div class="comment-text">
+                                        <p>
+                                            @response.Text
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <div><label for="response-mail">Email</label></div>
-                                <input required type="email" name="Email" id="response-mail">
+
+                        }
+
+                        <div class="post-response">
+                            <div class="comment-page">
+                                <form action="/Blog/AddCommentResponse" method="POST">
+                                    <input type="hidden" id="responseID" name="CommentID" value="@comment.CommentID" />
+                                    <div class="add-comment">
+                                        <div>
+                                            <div><label for="response-name">Name</label></div>
+                                            <input required type="text" name="Name" id="response-name">
+                                        </div>
+                                        <div>
+                                            <div><label for="response-mail">Email</label></div>
+                                            <input required type="email" name="Email" id="response-mail">
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 30px">
+                                        <div><label for="response-mail">Message</label></div>
+                                        <textarea required name="Text" id="response-textarea" cols="20" rows="10"></textarea>
+                                    </div>
+                                    <button id="send-response" type="submit">Send Response</button>
+                                </form>
                             </div>
                         </div>
-                        <div style="margin-top: 30px">
-                            <div><label for="response-mail">Message</label></div>
-                            <textarea required name="Text" id="response-textarea" cols="20" rows="10"></textarea>
+
+                    }
+                    else
+                    {
+                        <div class="post-response">
+                            <div class="comment-page">
+                                <form action="/Blog/AddCommentResponse" method="POST">
+                                    <input type="hidden" id="responseID" name="CommentID" value="@comment.CommentID" />
+                                    <div class="add-comment">
+                                        <div>
+                                            <div><label for="response-name">Name</label></div>
+                                            <input required type="text" name="Name" id="response-name">
+                                        </div>
+                                        <div>
+                                            <div><label for="response-mail">Email</label></div>
+                                            <input required type="email" name="Email" id="response-mail">
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 30px">
+                                        <div><label for="response-mail">Message</label></div>
+                                        <textarea required name="Text" id="response-textarea" cols="20" rows="10"></textarea>
+                                    </div>
+                                    <button id="send-response" type="submit">Send Response</button>
+                                </form>
+                            </div>
                         </div>
-                        <button id="send-response" type="submit">Send Response</button>
-                    </form>
+
+                    }
                 </div>
-            </div>
+            }
 
         }
 
-    }
-
-
-
-    <div id="post-comment">
-        <div class="comment-page">
-            <form action="/Blog/AddComment" method="POST">
-                <input type="hidden" id="ID" name="BlogID" value="@Model.ID" />
-                <div class="add-comment">
-                    <div>
-                        <div><label for="comment-name">Name</label></div>
-                        <input required type="text" name="Name" id="comment-name" placeholder="Steve Mcqueen">
-                    </div>
-                    <div>
-                        <div><label for="comment-mail">Email</label></div>
-                        <input required type="email" name="Email" id="comment-mail" placeholder="steve@mcqueen.us">
-                    </div>
-                </div>
-                <div style="margin-top: 30px">
-                    <div><label for="comment-mail">Message</label></div>
-                    <textarea required name="Text" id="comment-textarea" cols="20" rows="10" placeholder="Messages.."></textarea>
-                </div>
-                <button id="send-comment" type="submit">Send Comment</button>
-            </form>
-        </div>
     </div>
 
-    <script>
-
-        $(document).ready(function () {
-
-            //$("#post-comment").hide();
-
-            $(".post-response").each(function (index) {
-                $(this).hide();
-            });
+</div>
 
 
-            $("#send-comment").click(function (e) {
-                e.preventDefault();
 
-                $.ajax({
-                    url: '/Blog/AddComment',
-                    data: {
-                        BlogID: $("#ID").val(),
-                        Name: $("#comment-name").val(),
-                        Email: $("#comment-mail").val(),
-                        Text: $("#comment-textarea").val()
-                    },
-                    success: function (data) {
-                        if (data == "yes") {
-                            alert("Yorum gönderme işlemi başarılı!");
-                        }
-                        else {
-                            alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                        }
-                    },
-                    error: function () {
-                        alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                    }
-                });
-            })
+<div id="post-comment">
+    <div class="comment-page">
+        <form action="/Blog/AddComment" method="POST">
+            <input type="hidden" id="ID" name="BlogID" value="@Model.ID" />
+            <div class="add-comment">
+                <div>
+                    <div><label for="comment-name">Name</label></div>
+                    <input required type="text" name="Name" id="comment-name" placeholder="Steve Mcqueen">
+                </div>
+                <div>
+                    <div><label for="comment-mail">Email</label></div>
+                    <input required type="email" name="Email" id="comment-mail" placeholder="steve@mcqueen.us">
+                </div>
+            </div>
+            <div style="margin-top: 30px">
+                <div><label for="comment-mail">Message</label></div>
+                <textarea required name="Text" id="comment-textarea" cols="20" rows="10" placeholder="Messages.."></textarea>
+            </div>
+            <button id="send-comment" type="submit">Send Comment</button>
+        </form>
+    </div>
+</div>
 
-            $("#send-response").click(function (e) {
-                e.preventDefault();
+<script>
 
-                $.ajax({
-                    url: '/Blog/AddCommentResponse',
-                    data: {
-                        CommentID: $("#responseID").val(),
-                        Name: $("#response-name").val(),
-                        Email: $("#response-mail").val(),
-                        Text: $("#response-textarea").val()
-                    },
-                    success: function (data) {
-                        if (data == "yes") {
-                            alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                        }
-                        else {
-                            alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                        }
-                    },
-                    error: function () {
-                        alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                    }
-                });
-            })
+    $(document).ready(function () {
 
+        $('.post-response').each(function (number, element) {
+            element.style.display = 'none';
         });
 
 
-    </script>
+        $("#tempId").click(function (e) {
+
+            if (e.target.className == 'reply') {
+
+
+                $('.post-response').each(function (number, element) {
+                    element.style.display = 'none';
+                });
+
+                let parentElement = e.target.parentNode.parentNode;
+
+                let commentResponse = parentElement.querySelector('.post-response');
+
+                commentResponse.style.display = 'block';
+
+                $("#post-comment").css({'display':'none'})
+            }
+        });
+
+        $("#send-comment").click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '/Blog/AddComment',
+                data: {
+                    BlogID: $("#ID").val(),
+                    Name: $("#comment-name").val(),
+                    Email: $("#comment-mail").val(),
+                    Text: $("#comment-textarea").val()
+                },
+                success: function (data) {
+                    if (data == "yes") {
+                        alert("Yorum gönderme işlemi başarılı!");
+                    }
+                    else {
+                        alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                    }
+                },
+                error: function () {
+                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                }
+            });
+        })
+
+
+
+        $("#send-response").click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '/Blog/AddCommentResponse',
+                data: {
+                    CommentID: $("#responseID").val(),
+                    Name: $("#response-name").val(),
+                    Email: $("#response-mail").val(),
+                    Text: $("#response-textarea").val()
+                },
+                success: function (data) {
+                    if (data == "yes") {
+                        alert('Succeed! <3');
+                    }
+                    else {
+                        alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                    }
+                },
+                error: function () {
+                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
+                }
+            });
+        })
+
+    });
+
+
+</script>

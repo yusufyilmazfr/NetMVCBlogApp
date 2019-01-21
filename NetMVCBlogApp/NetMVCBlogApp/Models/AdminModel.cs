@@ -8,6 +8,8 @@ namespace NetMVCBlogApp.Models
 {
     public class AdminModel
     {
+        public int ID { get; set; }
+
         [Required]
         public string Username { get; set; }
 
@@ -26,7 +28,6 @@ namespace NetMVCBlogApp.Models
         public string AboutMe { get; set; }
 
         [Required]
-        [MaxLength(250)]
         public string ShortDescription { get; set; }
     }
 }

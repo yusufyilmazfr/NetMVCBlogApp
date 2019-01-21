@@ -77,12 +77,13 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Image" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
     <Property Name="isValid" Type="bit" Nullable="false" />
     <Property Name="AddedDate" Type="datetime" Nullable="false" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SeoLink" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Smtp">
     <Key>
@@ -93,8 +94,9 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="SenderName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Port" Type="nvarchar" MaxLength="4" Nullable="false" />
     <Property Name="Ssl" Type="bit" Nullable="false" />
+    <Property Name="ReceiverName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Port" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subscriber">
     <Key>

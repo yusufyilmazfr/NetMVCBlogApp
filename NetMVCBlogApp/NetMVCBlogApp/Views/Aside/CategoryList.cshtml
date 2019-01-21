@@ -9,7 +9,7 @@
     <ul class="category-list">
         @foreach (var category in Model)
         {
-            <li><a href="#">@category.Name</a></li>
+            <li><a href="@Url.Action("Categorie","Blog",new { name = new NetMVCBlogApp.Models.CreateFriendlyUrl().GenerateSlug(category.Name), Id = category.ID})">@category.Name</a></li>
         }
     </ul>
 </div>

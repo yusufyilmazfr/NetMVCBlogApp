@@ -1,8 +1,23 @@
 ﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
 
+@{
+    Layout = "~/Views/Shared/header-footer.cshtml";
+}
+
+
+    @if (Model.Count() == 0)
+    {
+        <div style="padding:20px 0; margin: 20px 0; display:flex; align-items:center; justify-content:center; box-shadow: 2px 2px 4px 0px #888;">
+            <h1 style="font-size:18px; font-family: 'Inconsolata', monospace; color: #333">
+                No shares found according to the word you are looking for
+            </h1>
+        </div>
+
+        return;
+    }
+
 <!-- Content Start -->
 <div id="Content">
-
 
     <!-- Article Start -->
     <div class="article">
@@ -16,7 +31,7 @@
                     </a>
                 </div>
 
-                
+
                 <div class="blog-image">
                     <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">
                         <img src="~/Content/img/post/@post.Image" alt="">
@@ -47,13 +62,8 @@
 
 
 
-
     </div>
     <!-- Article End  -->
-
-    <!-- Aside Start -->
-    @Html.Action("Index","Aside")
-    <!-- Aside End -->
 
 </div>
 <!-- Content End -->

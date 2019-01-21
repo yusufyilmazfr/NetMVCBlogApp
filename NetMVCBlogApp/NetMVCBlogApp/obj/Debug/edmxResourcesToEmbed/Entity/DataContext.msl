@@ -66,6 +66,7 @@
     <EntitySetMapping Name="Post">
       <EntityTypeMapping TypeName="BlogDBModel.Post">
         <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="SeoLink" ColumnName="SeoLink" />
           <ScalarProperty Name="isValid" ColumnName="isValid" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -114,8 +115,9 @@
     <EntitySetMapping Name="Smtp">
       <EntityTypeMapping TypeName="BlogDBModel.Smtp">
         <MappingFragment StoreEntitySet="Smtp">
-          <ScalarProperty Name="Ssl" ColumnName="Ssl" />
           <ScalarProperty Name="Port" ColumnName="Port" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="Ssl" ColumnName="Ssl" />
           <ScalarProperty Name="SenderName" ColumnName="SenderName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />

@@ -485,7 +485,9 @@
     <Content Include="Content\img\post\07-1-1060x596.jpg" />
     <Content Include="Content\img\post\12-1060x1484.jpg" />
     <Content Include="Content\img\post\unnamed.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -551,8 +553,14 @@
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CommentResponseModel.cs" />
+    <Compile Include="Models\ContactMailModel.cs" />
+    <Compile Include="Models\CreateFriendlyUrl.cs" />
+    <Compile Include="Models\CreateMD5.cs" />
     <Compile Include="Models\EditCommentModel.cs" />
+    <Compile Include="Models\Mail.cs" />
+    <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\SmtpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -654,6 +662,11 @@
     <Content Include="Views\Account\DeleteComment.cshtml" />
     <Content Include="Views\Account\EditComment.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Aside\Index.cshtml" />
+    <Content Include="Views\Blog\Search.cshtml" />
+    <Content Include="Views\Account\SmtpSettings.cshtml" />
+    <Content Include="Views\Account\PasswordSettings.cshtml" />
+    <Content Include="Views\Blog\Categorie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

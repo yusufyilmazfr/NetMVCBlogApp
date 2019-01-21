@@ -15,13 +15,14 @@ namespace NetMVCBlogApp.Controllers
         BlogDBEntities context = new BlogDBEntities();
 
         // GET: Blog
+        [Route("{blog}-{id:int}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
 
-            BlogDetailsModel blog = context.Post.Where(i => i.ID == id).Select(i => new BlogDetailsModel
+            BlogDetailsModel blog = context.Post.Where(i => i.ID == id && i.isValid).Select(i => new BlogDetailsModel
             {
                 ID = i.ID,
                 Name = i.Name,
@@ -29,7 +30,7 @@ namespace NetMVCBlogApp.Controllers
                 Text = i.Text,
                 addedDate = i.AddedDate,
 
-                Comments = i.Comment.Where(k=>k.isValid).Select(j => new BlogCommentModel
+                Comments = i.Comment.Where(k => k.isValid).Select(j => new BlogCommentModel
                 {
                     CommentID = j.ID,
                     Name = j.Name,
@@ -37,7 +38,7 @@ namespace NetMVCBlogApp.Controllers
                     Image = j.Image,
                     AddedDate = j.AddedDate,
 
-                    CommentResponses = j.CommentResponse.Where(k=>k.isValid).Select(k => new BlogCommentResponseModel
+                    CommentResponses = j.CommentResponse.Where(k => k.isValid).Select(k => new BlogCommentResponseModel
                     {
                         Name = k.Name,
                         Text = k.Text,
@@ -56,6 +57,17 @@ namespace NetMVCBlogApp.Controllers
 
             return View(blog);
 
+        }
+
+        public ActionResult Search(string q)
+        {
+            return View(context.Post.Where(i => i.Text.Contains(q) || i.Name.Contains(q)).ToList());
+        }
+
+        [Route("categorie-{name}")]
+        public ActionResult Categorie(int? Id)
+        {
+            return View(context.Post.Where(i=>i.CategoryID == Id && i.isValid).ToList());
         }
 
         public string AddComment(CommentModel model)

@@ -50,9 +50,9 @@
                 </ul>
             </div>
             <div class="search">
-                <form action="/" method="GET">
+                <form action="/Blog/Search" method="GET">
                     <div class="search-item">
-                        <input class="search-text" type="text" name="search" id="search" placeholder="search something">
+                        <input class="search-text" type="text" name="q" id="q" placeholder="search something">
                         <label for="search"><i class="fal fa-search"></i></label>
                     </div>
                 </form>
@@ -92,17 +92,12 @@
 
                 <script>
 
-
                     document.getElementById('subscribe-signup').addEventListener('click', function (e) {
-
 
                         let data = {
                             email: document.getElementById('subscribe').value
                         }
 
-
-
-                        e.preventDefault();
 
                         let xhttp = new XMLHttpRequest();
 
@@ -122,36 +117,10 @@
                         xhttp.setRequestHeader('Content-type', 'application/json');
 
                         xhttp.send(JSON.stringify(data));
+
+                        e.preventDefault();
+
                     });
-
-
-                                                                    //$(document).ready(function () {
-
-                                                                    //    $("#subscribe-signup").click(function (e) {
-
-                                                                    //        e.preventDefault()
-
-                                                                    //        $.ajax({
-                                                                    //            url: '/Subscriber/Add/',
-                                                                    //            data: {
-                                                                    //                email: $("#subscribe").val(),
-                                                                    //            },
-                                                                    //            success: function (data) {
-                                                                    //                if (data=="yes") {
-                                                                    //                    alert('Mailiniz dataya kayıt edildi :)');
-                                                                    //                    alert('Blog yazılarımdan ilk sizin haberiniz olacağından hiç şüpheniz olmasın :)');
-                                                                    //                }
-                                                                    //                else {
-                                                                    //                    alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                                                                    //                }
-                                                                    //            },
-                                                                    //            error: function () {
-                                                                    //                alert('Sanırım bir şeyler ters gitti, iletişim kısmından beni uyarır mısın?');
-                                                                    //            }
-                                                                    //        });
-                                                                    //    });
-
-                                                                    //});
 
                 </script>
             </div>

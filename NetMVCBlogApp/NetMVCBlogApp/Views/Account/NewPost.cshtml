@@ -11,8 +11,15 @@
                 <h4 class="title">New Post</h4>
             </div>
             <div class="content">
-                @using (Html.BeginForm(FormMethod.Post))
+                @using (Html.BeginForm("NewPost","Account",FormMethod.Post,new {@enctype="multipart/form-data" }))
                 {
+                    <div class="row" style="margin:50px 0 20px 0">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label for="uploadPhoto">select the image</label>
+                            <input type="file" name="uploadPhoto" id="uploadPhoto">
+                        </div>
+                    </div>
+
                     @*<div class="row">
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="form-group">
@@ -21,7 +28,7 @@
                                 </div>
                             </div>
                         </div>*@
-                
+
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">

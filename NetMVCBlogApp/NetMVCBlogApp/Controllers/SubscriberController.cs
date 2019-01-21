@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using NetMVCBlogApp.Entity;
@@ -14,13 +15,13 @@ namespace NetMVCBlogApp.Controllers
         // GET: Subscriber
         public string Add(string email)
         {
-            if (email !=null && email != "")
-            {
-                context.Subscriber.Add(new Subscriber() { Mail = email });
-                context.SaveChanges();
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (match.Success)
                 return "yes";
-            }
-            return "no";
+            else
+                return "no";
+
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@model NetMVCBlogApp.Models.AdminLoginModel
-@{ 
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -46,10 +46,35 @@
                 <button type="submit" class="login-btn" id="login-btn">Login</button>
             </div>
         </form>
+
+        <div style="width:400px; margin: 10px auto 0 auto; text-align:center; ">
+            <a href="javascript:void(0)" id="forget" style="text-decoration:none; color: #595959;">I forgot my password</a>
+        </div>
+
     </div>
 
     <script>
         $(document).ready(function () {
+
+            $("#forget").click(function (e) {
+
+                e.preventDefault();
+
+                $.ajax({
+
+                    url: '/Account/ForgetPassword',
+                    type: 'POST',
+                    success: function (data) {
+                        if (data == "failed") {
+                            alert(data)
+                        }
+                        else
+                            alert("new password successfully sent to the email");
+                    }
+
+                })
+            })
+
 
             $("#login-form").submit(function (e) {
 
@@ -63,12 +88,11 @@
                     },
                     type: 'POST',
                     success: function (data) {
-                        if (data == "yes") {
-                            document.location.href = "/Account";
-                        }
-                        else {
-                            alert("Geçersiz kullanıcı adı veya şifre!");
-                        }
+
+                        if (data == 'failed')
+                            alert('Invalid username or password!');
+                        else
+                            document.location.href = '/Account';
                     }
                 });
             });
@@ -77,39 +101,39 @@
 
 
 
-            //let form = document["forms"]["login-form"];
+                                            //let form = document["forms"]["login-form"];
 
-            //form.addEventListener('submit', function (e) {
+                                            //form.addEventListener('submit', function (e) {
 
-            //    e.preventDefault();
+                                            //    e.preventDefault();
 
-            //    let xhttp = new XMLHttpRequest();
+                                            //    let xhttp = new XMLHttpRequest();
 
-            //    let username = document.querySelector("#username").value;
-            //    let password = document.querySelector("#password").value;
+                                            //    let username = document.querySelector("#username").value;
+                                            //    let password = document.querySelector("#password").value;
 
-            //    xhttp.open("POST", "/Account/Login/", true);
-            //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //    xhttp.send("username=" + username + "&password=" + password);
+                                            //    xhttp.open("POST", "/Account/Login/", true);
+                                            //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                            //    xhttp.send("username=" + username + "&password=" + password);
 
-            //});
+                                            //});
 
-            //function submitForm(e) {
-            //    let xhttp = new XMLHttpRequest();
-            //    let username = document.querySelector("#username").value;
-            //    let password = document.querySelector("#password").value;
+                                            //function submitForm(e) {
+                                            //    let xhttp = new XMLHttpRequest();
+                                            //    let username = document.querySelector("#username").value;
+                                            //    let password = document.querySelector("#password").value;
 
-            //    //xhttp.onreadystatechange = function () {
-            //    //    if (this.readyState == 4 && this.status == 200) {
-            //    //        document.getElementById("demo").innerHTML = this.responseText;
-            //    //    }
-            //    //};
+                                            //    //xhttp.onreadystatechange = function () {
+                                            //    //    if (this.readyState == 4 && this.status == 200) {
+                                            //    //        document.getElementById("demo").innerHTML = this.responseText;
+                                            //    //    }
+                                            //    //};
 
-            //    xhttp.open("POST", "/Account/Login/", true);
-            //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //    xhttp.send("username=" + username + "&password=" + password);
+                                            //    xhttp.open("POST", "/Account/Login/", true);
+                                            //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                            //    xhttp.send("username=" + username + "&password=" + password);
 
-            //}
+                                            //}
 
 
     </script>

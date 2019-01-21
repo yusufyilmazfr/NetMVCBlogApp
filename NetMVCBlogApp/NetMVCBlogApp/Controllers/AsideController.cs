@@ -13,6 +13,13 @@ namespace NetMVCBlogApp.Controllers
         BlogDBEntities context = new BlogDBEntities();
 
         // GET: Aside
+
+        [ChildActionOnly]
+        public PartialViewResult Index()
+        {
+            return PartialView();
+        }
+
         [ChildActionOnly]
         public PartialViewResult AboutMe()
         {
@@ -35,7 +42,7 @@ namespace NetMVCBlogApp.Controllers
         [ChildActionOnly]
         public PartialViewResult RecentlyPost()
         {
-            return PartialView(context.Post.OrderByDescending(i => i.ID).Take(6));
+            return PartialView(context.Post.OrderByDescending(i => i.ID).Where(i=>i.isValid).Take(6));
         }
 
         [ChildActionOnly]

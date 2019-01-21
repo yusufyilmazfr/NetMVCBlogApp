@@ -9,7 +9,7 @@
     <ul class="category-list">
         @foreach (var recently in Model)
         {
-            <li><a href="/Blog/Details/@recently.ID">@recently.Name</a></li>
+            <li><a href="@Url.Action("Details","Blog", new { blog=recently.SeoLink, id=recently.ID })">@recently.Name</a></li>
         }
     </ul>
 </div>
