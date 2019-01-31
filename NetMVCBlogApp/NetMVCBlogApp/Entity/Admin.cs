@@ -15,15 +15,15 @@ namespace NetMVCBlogApp.Entity
     public partial class Admin
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Image { get; set; }
-        public string AboutMe { get; set; }
-        public System.DateTime AddedDate { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public string Mail { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public byte[] Image { get; set; }
+        public string AboutMe { get; set; }
         public string ShortDescription { get; set; }
-        public string Mail { get; set; }
+        public System.DateTime AddedDate { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
     }
 }

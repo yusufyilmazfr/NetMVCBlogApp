@@ -12,7 +12,7 @@
         </h1>
     </div>
     <div class="blog-image">
-        <img src="~/Content/img/post/@Model.Image" alt="">
+        <img src="~/Content/img/post/@Model.Image" alt="@Model.Name">
     </div>
 
     <div class="blog-text">
@@ -25,7 +25,7 @@
 
 @Html.Action("WrittenBy", "Aside")
 
-<div class="comment">
+<div class="comment" id="comments">
     <div class="comment-header">
         <h4>
             @if (Model.Comments.Count == 0)

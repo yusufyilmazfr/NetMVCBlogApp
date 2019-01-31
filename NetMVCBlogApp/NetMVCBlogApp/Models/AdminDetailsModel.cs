@@ -11,6 +11,6 @@ namespace NetMVCBlogApp.Models
         public string LastName { get; set; }
         public string AboutMe { get; set; }
         public string ShortDescription { get; set; }
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
     }
 }

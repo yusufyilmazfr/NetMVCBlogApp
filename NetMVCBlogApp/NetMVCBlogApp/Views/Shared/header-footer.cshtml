@@ -2,51 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    @Html.Action("MetaTags", "Seo", new { @value = ViewBag.Value})
+    
+    <link rel="shortcut icon" href="~/Content/img/icon/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=K2D" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-
     <link rel="stylesheet" href="~/Content/css/style.css">
     <link rel="stylesheet" href="~/Content/css/fa/css/all.css">
+    <script src="~/Content/js/jquery.js"></script>
     @RenderSection("ck_editor", false)
 
 
+    <title>@ViewBag.Title</title>
 
-    <script src="~/Content/js/jquery.js"></script>
 
-    <title>Yusuf Yılmaz | Personal Blog</title>
 </head>
+
 
 <body>
 
     <!-- Header Start -->
     <div id="Header">
-        <div class="header-item">
 
-            <img src="~/Content/img/logo.png" alt="" class="logo">
-            <p class="header-description">
-                UX Designer based in Omaha
-            </p>
-        </div>
+        @Html.Action("HeaderItem", "Home")
 
         <div class="nav">
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
+
+            @Html.Action("NavbarItem", "Home")
+
             <div class="nav-bar">
                 <ul class="nav-bar-item">
                     <li><a href="/">Home</a></li>
                     <li><a href="#">Features</a></li>
                     <li><a href="#">Portfolio</a></li>
-                    <li><a href="/Home/AboutMe">About Me</a></li>
-                    <li><a href="/Home/Contact">Contact</a></li>
+                    <li><a href="/About-Me">About Me</a></li>
+                    <li><a href="/Contact">Contact</a></li>
                 </ul>
             </div>
             <div class="search">

@@ -10,7 +10,7 @@
     <Property Name="Password" Type="nvarchar" MaxLength="60" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="Image" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Image" Type="image" />
     <Property Name="AboutMe" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ShortDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="AddedDate" Type="datetime" Nullable="false" />
@@ -67,9 +67,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Lang" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Logo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Logo" Type="image" />
+    <Property Name="HeaderText" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
@@ -97,6 +98,26 @@
     <Property Name="Ssl" Type="bit" Nullable="false" />
     <Property Name="ReceiverName" Type="nvarchar" MaxLength="50" />
     <Property Name="Port" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BlogDB.dbo.Social' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Social">
+    <Key>
+      <PropertyRef Name="Facebook" />
+      <PropertyRef Name="Twitter" />
+      <PropertyRef Name="Instagram" />
+      <PropertyRef Name="Skype" />
+      <PropertyRef Name="YouTube" />
+      <PropertyRef Name="Github" />
+      <PropertyRef Name="Linkedin" />
+    </Key>
+    <Property Name="Facebook" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Twitter" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Instagram" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="YouTube" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Github" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Linkedin" Type="nvarchar" MaxLength="25" Nullable="false" />
   </EntityType>
   <EntityType Name="Subscriber">
     <Key>
@@ -166,6 +187,17 @@
     <EntitySet Name="Smtp" EntityType="Self.Smtp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subscriber" EntityType="Self.Subscriber" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Social" EntityType="Self.Social" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Social].[Facebook] AS [Facebook], 
+    [Social].[Twitter] AS [Twitter], 
+    [Social].[Instagram] AS [Instagram], 
+    [Social].[Skype] AS [Skype], 
+    [Social].[YouTube] AS [YouTube], 
+    [Social].[Github] AS [Github], 
+    [Social].[Linkedin] AS [Linkedin]
+    FROM [dbo].[Social] AS [Social]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
       <End Role="Post" EntitySet="Post" />
       <End Role="Comment" EntitySet="Comment" />

@@ -8,7 +8,7 @@
         </h2>
     </div>
     <div class="about-me-image">
-        <img src="/Content/img/@Model.Image" alt="admin-image">
+        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Image)" alt="@Model.Name profile image">
     </div>
     <div class="about-me-text">
         @{
@@ -28,7 +28,7 @@
                 }
             }
         }
-        <a href="/Home/AboutMe">more</a>
+        <a href="/About-Me">more</a>
     </div>
 </div>
 

@@ -143,8 +143,8 @@ D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\System.Web
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\System.Web.Helpers.xml
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\System.Web.Mvc.xml
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Debug\NetMVCBlogApp.csprojAssemblyReference.cache
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Debug\NetMVCBlogApp.csproj.CoreCompileInputs.cache
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Debug\NetMVCBlogApp.csproj.CopyComplete
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Debug\NetMVCBlogApp.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Debug\NetMVCBlogApp.pdb
+D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Debug\NetMVCBlogApp.csprojAssemblyReference.cache

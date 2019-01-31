@@ -10,16 +10,28 @@ namespace NetMVCBlogApp.Controllers
 {
     public class HomeController : Controller
     {
-        BlogDBEntities context = new BlogDBEntities();
+        BlogDBEntities context;
+        public string title { get; set; }
+
+        public HomeController()
+        {
+            context = new BlogDBEntities();
+            title = context.Options.Select(i => i.Title).FirstOrDefault();
+        }
 
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Title = string.Format("{0}", title);
+
             return View(context.Post.Where(i => i.isValid).OrderByDescending(i => i.ID).ToList());
         }
 
+        [Route("Contact")]
         public ActionResult Contact()
         {
+            ViewBag.Title = string.Format("{0} | {1}", title, "Contact");
+
             return View();
         }
 
@@ -40,17 +52,47 @@ namespace NetMVCBlogApp.Controllers
             return "failed";
         }
 
+        [Route("About-me")]
         public ActionResult AboutMe()
         {
             AdminDetailsModel model = context.Admin.Select(i => new AdminDetailsModel
             {
                 Name = i.Name,
-                LastName = i.Image,
+                LastName = i.LastName,
                 AboutMe = i.AboutMe,
                 Image = i.Image
             }).FirstOrDefault();
 
+            ViewBag.Title = string.Format("{0} | {1}", title, "About Me");
+
             return View(model);
         }
+
+        [ChildActionOnly]
+        public PartialViewResult HeaderItem()
+        {
+            OptionModel optionModel = context.Options.Select(i => new OptionModel()
+            {
+                HeaderText = i.HeaderText,
+                Title = i.Title
+            }).FirstOrDefault();
+
+            ViewBag.Logo = context.Options.Select(i => i.Logo).FirstOrDefault();
+
+            return PartialView(optionModel);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult NavbarItem()
+        {
+            return PartialView(context.Social.FirstOrDefault());
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult ContactPageSocial()
+        {
+            return PartialView(context.Social.FirstOrDefault());
+        }
+
     }
 }

@@ -15,7 +15,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Image" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="image" />
           <Property Name="AboutMe" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ShortDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="AddedDate" Type="datetime" Nullable="false" />
@@ -72,9 +72,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="70" Nullable="false" />
           <Property Name="Lang" Type="nvarchar" MaxLength="3" Nullable="false" />
-          <Property Name="Logo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="HeaderText" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="230" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -102,6 +105,26 @@
           <Property Name="Ssl" Type="bit" Nullable="false" />
           <Property Name="ReceiverName" Type="nvarchar" MaxLength="50" />
           <Property Name="Port" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BlogDB.dbo.Social' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Social">
+          <Key>
+            <PropertyRef Name="Facebook" />
+            <PropertyRef Name="Twitter" />
+            <PropertyRef Name="Instagram" />
+            <PropertyRef Name="Skype" />
+            <PropertyRef Name="YouTube" />
+            <PropertyRef Name="Github" />
+            <PropertyRef Name="Linkedin" />
+          </Key>
+          <Property Name="Facebook" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Twitter" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Instagram" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="YouTube" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Github" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Linkedin" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Subscriber">
           <Key>
@@ -171,6 +194,17 @@
           <EntitySet Name="Smtp" EntityType="Self.Smtp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscriber" EntityType="Self.Subscriber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Social" EntityType="Self.Social" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Social].[Facebook] AS [Facebook], 
+    [Social].[Twitter] AS [Twitter], 
+    [Social].[Instagram] AS [Instagram], 
+    [Social].[Skype] AS [Skype], 
+    [Social].[YouTube] AS [YouTube], 
+    [Social].[Github] AS [Github], 
+    [Social].[Linkedin] AS [Linkedin]
+    FROM [dbo].[Social] AS [Social]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Comment" EntitySet="Comment" />
@@ -188,22 +222,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlogDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ShortDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID" />
@@ -238,15 +256,6 @@
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="AddedDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Options">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Lang" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -308,11 +317,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BlogDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Comment" EntityType="Self.Comment" />
           <EntitySet Name="Logs" EntityType="Self.Logs" />
-          <EntitySet Name="Options" EntityType="Self.Options" />
           <EntitySet Name="Post" EntityType="Self.Post" />
           <EntitySet Name="Subscriber" EntityType="Self.Subscriber" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -330,6 +337,9 @@
             <End Role="CommentResponse" EntitySet="CommentResponse" />
           </AssociationSet>
           <EntitySet Name="Smtp" EntityType="BlogDBModel.Smtp" />
+          <EntitySet Name="Social" EntityType="BlogDBModel.Social" />
+          <EntitySet Name="Admin" EntityType="BlogDBModel.Admin" />
+          <EntitySet Name="Options" EntityType="BlogDBModel.Options" />
         </EntityContainer>
         <EntityType Name="CommentResponse">
           <Key>
@@ -373,29 +383,58 @@
           <Property Name="ReceiverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Port" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Social">
+          <Key>
+            <PropertyRef Name="Facebook" />
+            <PropertyRef Name="Twitter" />
+            <PropertyRef Name="Instagram" />
+            <PropertyRef Name="Skype" />
+            <PropertyRef Name="YouTube" />
+            <PropertyRef Name="Github" />
+            <PropertyRef Name="Linkedin" />
+          </Key>
+          <Property Name="Facebook" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Instagram" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="YouTube" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Github" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Linkedin" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AboutMe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Lang" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HeaderText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="230" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BlogDBModelStoreContainer" CdmEntityContainer="BlogDBEntities">
-          <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="BlogDBModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="BlogDBModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -428,16 +467,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Ip" ColumnName="Ip" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Options">
-            <EntityTypeMapping TypeName="BlogDBModel.Options">
-              <MappingFragment StoreEntitySet="Options">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Lang" ColumnName="Lang" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -500,6 +529,49 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Social">
+            <EntityTypeMapping TypeName="BlogDBModel.Social">
+              <MappingFragment StoreEntitySet="Social">
+                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+                <ScalarProperty Name="Github" ColumnName="Github" />
+                <ScalarProperty Name="YouTube" ColumnName="YouTube" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="BlogDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Options">
+            <EntityTypeMapping TypeName="BlogDBModel.Options">
+              <MappingFragment StoreEntitySet="Options">
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="HeaderText" ColumnName="HeaderText" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Lang" ColumnName="Lang" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

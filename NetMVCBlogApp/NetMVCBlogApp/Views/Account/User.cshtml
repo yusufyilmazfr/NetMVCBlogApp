@@ -1,8 +1,8 @@
 ﻿@model NetMVCBlogApp.Entity.Admin
 @{
     Layout = "~/Views/Shared/admin.cshtml";
+    string imageData = Model.Image != null ? Convert.ToBase64String(Model.Image): "#";
 }
-
 
 @using (Html.BeginForm("User", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -17,7 +17,7 @@
                     <div class="content">
 
                         @Html.HiddenFor(model => model.ID)
-                        @Html.HiddenFor(model=>model.AddedDate)
+                        @Html.HiddenFor(model => model.AddedDate)
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -84,7 +84,7 @@
                     </div>
                     <div class="content">
                         <div class="author">
-                            <img class="avatar border-gray" src="~/Content/img/@Model.Image" alt="...">
+                            <img class="avatar border-gray" src="data:image/jpeg;base64,@imageData" alt="...">
 
                             <h4 class="title">
                                 @(Model.Name + " " + Model.LastName)<br>

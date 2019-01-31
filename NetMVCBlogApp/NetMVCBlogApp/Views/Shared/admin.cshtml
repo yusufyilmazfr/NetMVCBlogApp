@@ -1,4 +1,11 @@
-﻿
+﻿@{
+    if (Session["admin"] == null)
+    {
+        Response.Redirect("/Account/Login");
+        return;
+    }
+
+}
 <!doctype html>
 <html lang="en">
 <head>
@@ -53,7 +60,7 @@
                     <a href="http://yusufyilmaz.org" target="_blank" class="simple-text">
                         Yusuf Yılmaz
                     </a>
-                    <img width="80" src="~/Content/img/@(((NetMVCBlogApp.Entity.Admin)Session["admin"]).Image)" style="border-radius:100%" />
+    @*                <img width="80" src="data:image/jpeg;base64, @imageData" style="border-radius:100%" />*@
                 </div>
 
                 <ul class="nav">
@@ -91,17 +98,24 @@
                         </a>
                     </li>
 
-                     <li>
+                    <li>
                         <a href="/Account/SmtpSettings">
                             <i class="pe-7s-mail-open"></i>
                             <p>SMTP Settings</p>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a href="/Account/PasswordSettings">
                             <i class="pe-7s-settings"></i>
                             <p>Password Settings</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Account/General">
+                            <i class="pe-7s-edit"></i>
+                            <p>General</p>
                         </a>
                     </li>
 

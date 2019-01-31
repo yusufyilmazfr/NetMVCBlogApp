@@ -5,7 +5,7 @@
         <h5>About Me</h5>
     </div>
     <div class="about-page-image">
-        <img width="350" src="~/Content/img/@Model.Image" alt="Hakkımda Resmi">
+        <img width="350" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="@Model.Name @Model.LastName about me  profile image">
     </div>
     <div class="about-page-text">
         @Model.AboutMe
@@ -15,16 +15,7 @@
         <h6 class="follow-me-header">
             FOLLOW ME
         </h6>
-        <div class="follow-me-social">
-            <a target="_blank" href="#"><i class="fab fa-facebook-f"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-twitter"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-google-plus-g"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-instagram"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-skype"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-youtube"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-spotify"></i> </a>
-            <a target="_blank" href="#"><i class="fab fa-github"></i> </a>
-        </div>
+        @Html.Action("ContactPageSocial", "Home")
     </div>
 
 </div>

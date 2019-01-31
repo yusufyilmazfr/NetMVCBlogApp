@@ -13,5 +13,7 @@ namespace NetMVCBlogApp.Models
 
         [Required]
         public string password { get; set; }
+
+        public byte[] ProfileImage { get; set; }
     }
 }

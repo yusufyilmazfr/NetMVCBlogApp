@@ -42,7 +42,7 @@ namespace NetMVCBlogApp.Controllers
         [ChildActionOnly]
         public PartialViewResult RecentlyPost()
         {
-            return PartialView(context.Post.OrderByDescending(i => i.ID).Where(i=>i.isValid).Take(6));
+            return PartialView(context.Post.OrderByDescending(i => i.ID).Where(i => i.isValid).Take(6));
         }
 
         [ChildActionOnly]
@@ -59,5 +59,6 @@ namespace NetMVCBlogApp.Controllers
 
             return PartialView(admin);
         }
+       
     }
 }

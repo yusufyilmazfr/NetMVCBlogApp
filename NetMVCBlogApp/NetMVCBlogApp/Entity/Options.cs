@@ -17,6 +17,9 @@ namespace NetMVCBlogApp.Entity
         public int ID { get; set; }
         public string Title { get; set; }
         public string Lang { get; set; }
-        public string Logo { get; set; }
+        public byte[] Logo { get; set; }
+        public string HeaderText { get; set; }
+        public string Description { get; set; }
+        public string Tags { get; set; }
     }
 }

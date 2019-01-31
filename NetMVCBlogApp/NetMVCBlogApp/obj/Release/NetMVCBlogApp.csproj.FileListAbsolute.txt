@@ -25,16 +25,13 @@ D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\Sys
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Diagnostics.Process.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Diagnostics.StackTrace.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.Compression.dll
-D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.FileSystem.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
-D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.FileSystem.Primitives.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.Pipes.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Reflection.Metadata.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.AccessControl.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Claims.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Cryptography.Encoding.dll
-D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Cryptography.Primitives.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Principal.Windows.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Text.Encoding.CodePages.dll
@@ -68,8 +65,8 @@ D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\System.Web
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\System.Web.Helpers.xml
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\System.Web.Mvc.xml
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.csprojAssemblyReference.cache
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.csproj.CoreCompileInputs.cache
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.csproj.CopyComplete
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.pdb
+D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Cryptography.Primitives.dll

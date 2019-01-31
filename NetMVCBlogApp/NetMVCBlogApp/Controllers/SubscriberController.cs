@@ -18,9 +18,15 @@ namespace NetMVCBlogApp.Controllers
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(email);
             if (match.Success)
+            {
+                context.Subscriber.Add(new Subscriber() { Mail = email });
+                context.SaveChanges();
                 return "yes";
+            }
             else
+            {
                 return "no";
+            }
 
         }
     }

@@ -8,6 +8,9 @@ using NetMVCBlogApp.Entity;
 using System.Net;
 using System.IO;
 using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
+
 
 namespace NetMVCBlogApp.Controllers
 {
@@ -18,7 +21,7 @@ namespace NetMVCBlogApp.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Login"); }
+            if (Session["admin"] == null) { return RedirectToAction("Login", "Account"); }
 
             return View();
         }
@@ -50,7 +53,7 @@ namespace NetMVCBlogApp.Controllers
         public ActionResult Login()
         {
             if (Session["admin"] != null) { return RedirectToAction("Index"); }
-
+            ViewBag.ProfileImage = context.Admin.FirstOrDefault().Image;
             return View();
         }
 
@@ -63,7 +66,14 @@ namespace NetMVCBlogApp.Controllers
 
                 if (context.Admin.Where(i => i.Username == model.username && i.Password == password).Any())
                 {
-                    Session["admin"] = context.Admin.Where(i => i.Username == model.username && i.Password == password).First();
+                    Session["admin"] = context.Admin.Where(i => i.Username == model.username && i.Password == password).Select(i => new SessionAdminModel()
+                    {
+                        Id = i.ID,
+                        Name = i.Name,
+                        Lastname = i.LastName,
+                        Password = i.Password,
+                        Username = i.Username
+                    }).FirstOrDefault();
 
                     return "succeed";
                 }
@@ -79,51 +89,38 @@ namespace NetMVCBlogApp.Controllers
 
         public new ActionResult User()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
+            
             return View(context.Admin.First());
         }
 
         [HttpPost]
-        public new JsonResult User(Admin model)
+        public JsonResult User(Admin model, HttpPostedFileBase uploadPhoto)
         {
-
-            Admin admin = context.Admin.First();
-
-            model.ModifiedDate = DateTime.Now;
-
-
-            HttpPostedFileBase adminImage = Request.Files.Get("uploadPhoto");
-
             if (ModelState.IsValid)
             {
-                if (adminImage != null && adminImage.ContentLength > 0)
+                Admin admin = context.Admin.FirstOrDefault();
+
+                if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
                 {
-                    string ext = Path.GetExtension(adminImage.FileName).ToUpper();
+                    string ext = Path.GetExtension(uploadPhoto.FileName).ToUpper();
 
                     if (ext == ".JPEG" || ext == ".PNG" || ext == ".JPG")
                     {
-                        string path = Server.MapPath("~/Content/img/admin") + ext.ToLower();
+                        MemoryStream ms = new MemoryStream();
 
-                        adminImage.SaveAs(path);
+                        uploadPhoto.InputStream.CopyTo(ms);
 
-                        model.Image = "admin" + ext.ToLower();
+                        admin.Image = ms.ToArray();
                     }
                 }
-                else
-                {
-                    model.Image = "admin.jpg";
-                }
 
-
-                context.Entry<Admin>(model).State = System.Data.Entity.EntityState.Modified;
-
-                context.Entry<Admin>(model).Property("Password").IsModified = false;
-
-                //context.Entry<Admin>(model).State = System.Data.Entity.EntityState.Modified;
-
-                //context.Entry<Admin>(model).Property(i => i.Password).IsModified = false;
-                //context.Entry<Admin>(model).Property(i => i.AddedDate).IsModified = false;
+                admin.Username = model.Username;
+                admin.Name = model.Name;
+                admin.LastName = model.LastName;
+                admin.AboutMe = model.AboutMe;
+                admin.ShortDescription = model.ShortDescription;
+                admin.AddedDate = model.AddedDate;
+                admin.ModifiedDate = DateTime.Now;
 
                 context.SaveChanges();
 
@@ -135,15 +132,11 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult Posts()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             return View(context.Post.ToList());
         }
 
         public ActionResult NewPost()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             ViewBag.CategoryID = new SelectList(context.Category, "ID", "Name");
 
             return View();
@@ -153,9 +146,6 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public ActionResult NewPost(PostModel model)
         {
-
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ModelState.IsValid)
             {
 
@@ -206,8 +196,6 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult EditPost(int? ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -231,8 +219,6 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public ActionResult EditPost(Post model)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ModelState.IsValid)
             {
                 Post post = context.Post.Find(model.ID);
@@ -250,8 +236,6 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult DeletePost(int? ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -270,8 +254,6 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public ActionResult DeletePost(int ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             Post model = context.Post.Find(ID);
             context.Post.Remove(model);
             context.SaveChanges();
@@ -281,23 +263,17 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult Categories()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             return View(context.Category.ToList());
         }
 
         public ActionResult NewCategorie()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             return View();
         }
 
         [HttpPost]
         public ActionResult NewCategorie(Category model)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ModelState.IsValid)
             {
                 if (context.Category.Any(i => i.Name == model.Name))
@@ -346,8 +322,6 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult DeleteCategorie(int? ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -366,8 +340,6 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public ActionResult DeleteCategorie(int ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             var posts = context.Post.Where(i => i.CategoryID == ID).ToList();
 
             foreach (Post item in posts)
@@ -386,15 +358,11 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult Comments()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
-            return View(context.Comment.ToList());
+            return View(context.Comment.OrderByDescending(i => i.ID).ToList());
         }
 
         public ActionResult DeleteComment(int? ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -413,8 +381,6 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public ActionResult DeleteComment(int ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             Comment comment = context.Comment.Find(ID);
             context.Comment.Remove(comment);
 
@@ -425,8 +391,6 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult EditComment(int? ID)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -475,18 +439,85 @@ namespace NetMVCBlogApp.Controllers
             return View(model);
         }
 
+        public ActionResult DeleteResponse(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CommentResponse model = context.CommentResponse.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteResponse(int ID)
+        {
+            CommentResponse comment = context.CommentResponse.Find(ID);
+            context.CommentResponse.Remove(comment);
+
+            context.SaveChanges();
+
+            return RedirectToAction("Comments");
+        }
+
+
+        public ActionResult EditResponse(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CommentResponse model = context.CommentResponse.Find(ID);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditResponse(CommentResponse model)
+        {
+            if (ModelState.IsValid)
+            {
+                CommentResponse comment = context.CommentResponse.Find(model.ID);
+
+                comment.Name = model.Name;
+                comment.Mail = model.Mail;
+                comment.Text = model.Text;
+                comment.Image = model.Image;
+                comment.isValid = model.isValid;
+                comment.ModifiedDate = DateTime.Now;
+                comment.CommentID = model.CommentID;
+                comment.AddedDate = model.AddedDate;
+                //COMMENT ID
+
+                context.SaveChanges();
+
+                return RedirectToAction("Comments");
+            }
+
+            return View(model);
+        }
+
         public ActionResult SmtpSettings()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             return View(context.Smtp.FirstOrDefault());
         }
 
         [HttpPost]
         public ActionResult SmtpSettings(Smtp smtp)
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             if (ModelState.IsValid)
             {
                 try
@@ -506,8 +537,6 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult PasswordSettings()
         {
-            if (Session["admin"] == null) { return RedirectToAction("Index"); }
-
             PasswordModel passwordModel = new PasswordModel()
             {
                 LastPassword = context.Admin.Select(i => i.Password).FirstOrDefault()
@@ -519,7 +548,6 @@ namespace NetMVCBlogApp.Controllers
         [HttpPost]
         public string PasswordSettings(PasswordModel model)
         {
-
             string adminPassword = context.Admin.Select(i => i.Password).FirstOrDefault();
             string lastPassword = CreateMD5.Create(model.LastPassword);
 
@@ -540,7 +568,59 @@ namespace NetMVCBlogApp.Controllers
 
             return "failed";
         }
-    }
 
+        public ActionResult General()
+        {
+            OptionModel optionModel = context.Options.Select(i => new OptionModel()
+            {
+                HeaderText = i.HeaderText,
+                ID = i.ID,
+                Lang = i.Lang,
+                Title = i.Title
+            }).FirstOrDefault();
+
+            return View(optionModel);
+        }
+
+        [HttpPost]
+        public ActionResult General(OptionModel model)
+        {
+            if (ModelState.IsValid || Request.Files.Get("Logo") != null)
+            {
+
+                if (ModelState.IsValid)
+                {
+                    Options option = context.Options.FirstOrDefault();
+
+                    option.Lang = model.Lang;
+                    option.Title = model.Title;
+                    option.HeaderText = model.HeaderText;
+
+                    context.SaveChanges();
+                }
+
+                HttpPostedFileBase logo = Request.Files.Get("Logo");
+
+                if (logo != null && logo.ContentLength > 0)
+                {
+                    string ext = Path.GetExtension(logo.FileName).ToUpper();
+
+                    if (ext == ".JPG" || ext == ".PNG" || ext == ".JPEG")
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        logo.InputStream.CopyTo(ms);
+
+                        context.Options.FirstOrDefault(i => i.ID == model.ID).Logo = ms.ToArray();
+
+                        context.SaveChanges();
+                    }
+
+                }
+                return View("Index");
+
+            }
+            return View(model);
+        }
+    }
 
 }

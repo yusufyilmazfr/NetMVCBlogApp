@@ -5,11 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="82bb90bbe2e548dfbca6db94ee199638" Name="Diagram1">
-        <EntityTypeShape EntityType="BlogDBModel.Admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.Comment" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.Logs" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Options" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.Post" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.Subscriber" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
@@ -18,6 +16,9 @@
         <EntityTypeShape EntityType="BlogDBModel.CommentResponse" Width="1.5" PointX="7.5" PointY="7.125" />
         <AssociationConnector Association="BlogDBModel.FK_CommentResponse_Comment" />
         <EntityTypeShape EntityType="BlogDBModel.Smtp" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="BlogDBModel.Social" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="BlogDBModel.Admin" Width="1.5" PointX="10.375" PointY="7.75" />
+        <EntityTypeShape EntityType="BlogDBModel.Options" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

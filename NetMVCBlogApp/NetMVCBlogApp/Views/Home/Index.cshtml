@@ -19,7 +19,7 @@
                 
                 <div class="blog-image">
                     <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">
-                        <img src="~/Content/img/post/@post.Image" alt="">
+                        <img src="~/Content/img/post/@post.Image" alt="@post.Name">
                     </a>
                 </div>
                 <div class="blog-text">

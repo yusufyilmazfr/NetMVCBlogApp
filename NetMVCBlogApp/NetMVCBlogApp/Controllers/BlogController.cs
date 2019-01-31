@@ -12,7 +12,14 @@ namespace NetMVCBlogApp.Controllers
     public class BlogController : Controller
     {
 
-        BlogDBEntities context = new BlogDBEntities();
+        BlogDBEntities context;
+        public string title { get; set; }
+
+        public BlogController()
+        {
+            context = new BlogDBEntities();
+            title = context.Options.Select(i => i.Title).FirstOrDefault();
+        }
 
         // GET: Blog
         [Route("{blog}-{id:int}")]
@@ -54,6 +61,8 @@ namespace NetMVCBlogApp.Controllers
             if (blog == null)
                 return HttpNotFound();
 
+            ViewBag.Title = string.Format("{0} » {1}", title, blog.Name);
+            ViewBag.Value = blog.Name;
 
             return View(blog);
 
@@ -61,13 +70,16 @@ namespace NetMVCBlogApp.Controllers
 
         public ActionResult Search(string q)
         {
-            return View(context.Post.Where(i => i.Text.Contains(q) || i.Name.Contains(q)).ToList());
+            ViewBag.Title = string.Format("{0} | Search: {1}", title, q);
+
+            var model = context.Post.Where(i => i.Text.Contains(q) || i.Name.Contains(q)).AsQueryable();
+            return View(model.Where(i => i.isValid).OrderByDescending(i => i.ID).ToList());
         }
 
-        [Route("categorie-{name}")]
+        [Route("category-{name}")]
         public ActionResult Categorie(int? Id)
         {
-            return View(context.Post.Where(i=>i.CategoryID == Id && i.isValid).ToList());
+            return View(context.Post.Where(i => i.CategoryID == Id && i.isValid).ToList());
         }
 
         public string AddComment(CommentModel model)

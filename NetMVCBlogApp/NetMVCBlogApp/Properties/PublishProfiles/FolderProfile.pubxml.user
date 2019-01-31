@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\XxX\Desktop\blog files</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\temp</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/EntityFramework.dll">
@@ -22,10 +22,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/NetMVCBlogApp.dll">
-      <publishTime>12/02/2018 00:39:29</publishTime>
+      <publishTime>01/31/2019 03:55:52</publishTime>
     </File>
     <File Include="bin/NetMVCBlogApp.pdb">
-      <publishTime>12/02/2018 00:39:29</publishTime>
+      <publishTime>01/31/2019 03:55:52</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>12/13/2017 22:09:38</publishTime>
@@ -172,22 +172,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/13/2017 22:09:38</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>02/01/2018 12:20:56</publishTime>
+      <publishTime>01/02/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>02/01/2018 12:16:32</publishTime>
+      <publishTime>01/02/2018 12:16:32</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>02/01/2018 12:16:56</publishTime>
+      <publishTime>01/02/2018 12:16:56</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Deployment.dll">
-      <publishTime>02/01/2018 12:20:56</publishTime>
+      <publishTime>01/02/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.dll">
-      <publishTime>02/01/2018 12:20:56</publishTime>
+      <publishTime>01/02/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Razor.dll">
-      <publishTime>02/01/2018 12:20:56</publishTime>
+      <publishTime>01/02/2018 12:20:56</publishTime>
     </File>
     <File Include="Content/ckeditor/adapters/jquery.js">
       <publishTime>11/30/2018 15:39:11</publishTime>
@@ -205,7 +205,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/30/2018 15:39:11</publishTime>
     </File>
     <File Include="Content/ckeditor/contents.css">
-      <publishTime>11/30/2018 15:39:11</publishTime>
+      <publishTime>01/31/2019 03:51:58</publishTime>
     </File>
     <File Include="Content/ckeditor/lang/af.js">
       <publishTime>11/30/2018 15:39:11</publishTime>
@@ -1243,7 +1243,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/25/2018 14:04:55</publishTime>
     </File>
     <File Include="Content/css/style.css">
-      <publishTime>12/01/2018 14:09:02</publishTime>
+      <publishTime>01/17/2019 22:12:16</publishTime>
     </File>
     <File Include="Content/dashboard/css/animate.min.css">
       <publishTime>11/28/2018 10:56:22</publishTime>
@@ -1444,7 +1444,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2018 10:56:22</publishTime>
     </File>
     <File Include="Content/img/admin.jpg">
-      <publishTime>11/25/2018 14:04:55</publishTime>
+      <publishTime>07/12/2018 00:14:54</publishTime>
+    </File>
+    <File Include="Content/img/icon/icon.png">
+      <publishTime>01/30/2019 20:55:02</publishTime>
     </File>
     <File Include="Content/img/logo.png">
       <publishTime>11/25/2018 14:04:55</publishTime>
@@ -1494,7 +1497,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/img/post/07-1-1060x596.jpg">
       <publishTime>11/25/2018 14:04:55</publishTime>
     </File>
+    <File Include="Content/img/post/1.JPG">
+      <publishTime>01/20/2019 18:39:09</publishTime>
+    </File>
     <File Include="Content/img/post/12-1060x1484.jpg">
+      <publishTime>11/25/2018 14:04:55</publishTime>
+    </File>
+    <File Include="Content/img/post/2.JPG">
+      <publishTime>01/20/2019 18:39:47</publishTime>
+    </File>
+    <File Include="Content/img/post/3.JPG">
+      <publishTime>01/20/2019 18:40:38</publishTime>
+    </File>
+    <File Include="Content/img/post/4.JPG">
+      <publishTime>01/20/2019 18:41:17</publishTime>
+    </File>
+    <File Include="Content/img/post/5.jpg">
       <publishTime>11/25/2018 14:04:55</publishTime>
     </File>
     <File Include="Content/img/post/post5.jpg">
@@ -1507,94 +1525,133 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/26/2018 19:46:17</publishTime>
     </File>
     <File Include="Entity/DataContext.edmx.diagram">
-      <publishTime>11/28/2018 11:56:07</publishTime>
+      <publishTime>01/31/2019 03:36:04</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>11/25/2018 13:54:37</publishTime>
+    </File>
+    <File Include="Robots.txt">
+      <publishTime>01/31/2019 00:45:17</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>11/25/2018 13:55:39</publishTime>
     </File>
     <File Include="Views/Account/Categories.cshtml">
-      <publishTime>12/01/2018 16:27:06</publishTime>
+      <publishTime>01/12/2018 16:27:06</publishTime>
     </File>
     <File Include="Views/Account/Comments.cshtml">
-      <publishTime>12/01/2018 22:03:40</publishTime>
+      <publishTime>01/22/2019 20:36:26</publishTime>
     </File>
     <File Include="Views/Account/DeleteCategorie.cshtml">
       <publishTime>11/29/2018 23:27:55</publishTime>
     </File>
     <File Include="Views/Account/DeleteComment.cshtml">
-      <publishTime>12/01/2018 21:55:34</publishTime>
+      <publishTime>01/12/2018 21:55:34</publishTime>
     </File>
     <File Include="Views/Account/DeletePost.cshtml">
       <publishTime>11/29/2018 23:08:22</publishTime>
     </File>
+    <File Include="Views/Account/DeleteResponse.cshtml">
+      <publishTime>01/22/2019 20:12:07</publishTime>
+    </File>
     <File Include="Views/Account/EditCategorie.cshtml">
-      <publishTime>12/01/2018 16:55:03</publishTime>
+      <publishTime>01/12/2018 16:55:03</publishTime>
     </File>
     <File Include="Views/Account/EditComment.cshtml">
-      <publishTime>12/01/2018 22:48:33</publishTime>
+      <publishTime>01/22/2019 00:35:40</publishTime>
     </File>
     <File Include="Views/Account/EditPost.cshtml">
-      <publishTime>12/01/2018 21:49:15</publishTime>
+      <publishTime>01/12/2018 21:49:15</publishTime>
+    </File>
+    <File Include="Views/Account/EditResponse.cshtml">
+      <publishTime>01/22/2019 20:24:08</publishTime>
+    </File>
+    <File Include="Views/Account/General.cshtml">
+      <publishTime>01/23/2019 23:23:53</publishTime>
     </File>
     <File Include="Views/Account/Index.cshtml">
-      <publishTime>11/28/2018 11:13:07</publishTime>
+      <publishTime>01/31/2019 03:55:18</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>11/28/2018 10:59:54</publishTime>
+      <publishTime>01/30/2019 18:04:49</publishTime>
     </File>
     <File Include="Views/Account/NewCategorie.cshtml">
-      <publishTime>12/01/2018 16:55:09</publishTime>
+      <publishTime>01/12/2018 16:55:09</publishTime>
     </File>
     <File Include="Views/Account/NewPost.cshtml">
-      <publishTime>12/01/2018 13:10:52</publishTime>
+      <publishTime>01/20/2019 00:36:16</publishTime>
+    </File>
+    <File Include="Views/Account/PasswordSettings.cshtml">
+      <publishTime>01/19/2019 10:44:56</publishTime>
     </File>
     <File Include="Views/Account/Posts.cshtml">
       <publishTime>11/30/2018 12:31:05</publishTime>
     </File>
+    <File Include="Views/Account/SmtpSettings.cshtml">
+      <publishTime>01/19/2019 00:47:49</publishTime>
+    </File>
     <File Include="Views/Account/User.cshtml">
-      <publishTime>11/29/2018 20:48:02</publishTime>
+      <publishTime>01/30/2019 18:52:11</publishTime>
     </File>
     <File Include="Views/Aside/AboutMe.cshtml">
-      <publishTime>11/28/2018 13:47:46</publishTime>
+      <publishTime>01/31/2019 03:18:18</publishTime>
     </File>
     <File Include="Views/Aside/CategoryList.cshtml">
-      <publishTime>11/25/2018 16:31:56</publishTime>
+      <publishTime>01/19/2019 23:31:12</publishTime>
+    </File>
+    <File Include="Views/Aside/Index.cshtml">
+      <publishTime>01/18/2019 14:32:13</publishTime>
     </File>
     <File Include="Views/Aside/RecentlyPost.cshtml">
-      <publishTime>11/25/2018 16:35:15</publishTime>
+      <publishTime>01/18/2019 18:38:57</publishTime>
     </File>
     <File Include="Views/Aside/WrittenBy.cshtml">
-      <publishTime>11/26/2018 10:46:47</publishTime>
+      <publishTime>01/24/2019 23:51:09</publishTime>
+    </File>
+    <File Include="Views/Blog/Categorie.cshtml">
+      <publishTime>01/19/2019 23:34:54</publishTime>
     </File>
     <File Include="Views/Blog/Details.cshtml">
-      <publishTime>12/01/2018 12:33:01</publishTime>
+      <publishTime>01/30/2019 20:26:51</publishTime>
+    </File>
+    <File Include="Views/Blog/Search.cshtml">
+      <publishTime>01/18/2019 22:45:17</publishTime>
     </File>
     <File Include="Views/Home/AboutMe.cshtml">
-      <publishTime>11/27/2018 20:15:32</publishTime>
+      <publishTime>01/30/2019 21:50:19</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>11/26/2018 22:36:51</publishTime>
+      <publishTime>01/21/2019 22:11:58</publishTime>
+    </File>
+    <File Include="Views/Home/ContactPageSocial.cshtml">
+      <publishTime>01/21/2019 22:08:29</publishTime>
+    </File>
+    <File Include="Views/Home/HeaderItem.cshtml">
+      <publishTime>01/30/2019 21:51:02</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/30/2018 17:15:04</publishTime>
+      <publishTime>01/30/2019 20:25:09</publishTime>
+    </File>
+    <File Include="Views/Home/NavbarItem.cshtml">
+      <publishTime>01/21/2019 22:08:24</publishTime>
+    </File>
+    <File Include="Views/Seo/MetaTags.cshtml">
+      <publishTime>01/31/2019 03:48:28</publishTime>
     </File>
     <File Include="Views/Shared/admin.cshtml">
-      <publishTime>11/30/2018 15:45:48</publishTime>
+      <publishTime>01/30/2019 20:51:25</publishTime>
     </File>
     <File Include="Views/Shared/header-footer.cshtml">
-      <publishTime>12/01/2018 14:14:08</publishTime>
+      <publishTime>01/31/2019 03:47:46</publishTime>
     </File>
     <File Include="Views/web.config">
-      <publishTime>11/25/2018 13:54:37</publishTime>
+      <publishTime>01/31/2019 01:28:56</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>11/25/2018 14:00:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/02/2018 00:39:30</publishTime>
+      <publishTime>01/31/2019 03:56:17</publishTime>
     </File>
   </ItemGroup>
 </Project>

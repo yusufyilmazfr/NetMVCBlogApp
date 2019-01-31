@@ -8,7 +8,7 @@
     </div>
     <div class="author-info">
         <div class="author-image">
-            <img src="~/Content/img/@Model.Image" alt="Yazar Resimi">
+            <img src="data:image/jpg;base64, @Convert.ToBase64String(Model.Image)" alt="@Model.Name @Model.LastName">
         </div>
         <div class="author-description">
             <h6>

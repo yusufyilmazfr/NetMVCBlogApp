@@ -1,6 +1,7 @@
 ﻿@model NetMVCBlogApp.Models.AdminLoginModel
 @{
     Layout = null;
+    string imageData = ((byte[])ViewBag.ProfileImage) != null ? Convert.ToBase64String((byte[])ViewBag.ProfileImage) : "#";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@
     <div class="login-content">
         <form id="login-form" name="login-form">
             <div class="login-img">
-                <img src="~/Content/img/admin.jpg" alt="admin-image">
+                <img src="data:image/jpeg;base64,@imageData" alt="admin-image">
             </div>
             <div class="login-uname">
                 <div style="width: 30px ;display: inline-block;">
@@ -98,43 +99,6 @@
             });
 
         });
-
-
-
-                                            //let form = document["forms"]["login-form"];
-
-                                            //form.addEventListener('submit', function (e) {
-
-                                            //    e.preventDefault();
-
-                                            //    let xhttp = new XMLHttpRequest();
-
-                                            //    let username = document.querySelector("#username").value;
-                                            //    let password = document.querySelector("#password").value;
-
-                                            //    xhttp.open("POST", "/Account/Login/", true);
-                                            //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                            //    xhttp.send("username=" + username + "&password=" + password);
-
-                                            //});
-
-                                            //function submitForm(e) {
-                                            //    let xhttp = new XMLHttpRequest();
-                                            //    let username = document.querySelector("#username").value;
-                                            //    let password = document.querySelector("#password").value;
-
-                                            //    //xhttp.onreadystatechange = function () {
-                                            //    //    if (this.readyState == 4 && this.status == 200) {
-                                            //    //        document.getElementById("demo").innerHTML = this.responseText;
-                                            //    //    }
-                                            //    //};
-
-                                            //    xhttp.open("POST", "/Account/Login/", true);
-                                            //    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                            //    xhttp.send("username=" + username + "&password=" + password);
-
-                                            //}
-
 
     </script>
 

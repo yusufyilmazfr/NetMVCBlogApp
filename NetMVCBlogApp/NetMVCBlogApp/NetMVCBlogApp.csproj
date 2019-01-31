@@ -18,9 +18,9 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -446,6 +446,7 @@
     <Content Include="Content\dashboard\js\demo.js" />
     <Content Include="Content\dashboard\js\jquery.3.2.1.min.js" />
     <Content Include="Content\dashboard\js\light-bootstrap-dashboard.js" />
+    <Content Include="Content\img\icon\icon.png" />
     <Content Include="Content\img\person\he1.png" />
     <Content Include="Content\img\person\he2.png" />
     <Content Include="Content\img\person\he3.png" />
@@ -456,7 +457,11 @@
     <Content Include="Content\img\person\she3.png" />
     <Content Include="Content\img\person\she4.png" />
     <Content Include="Content\img\person\she5.png" />
-    <Content Include="Content\img\post\post5.jpg" />
+    <Content Include="Content\img\post\1.JPG" />
+    <Content Include="Content\img\post\2.JPG" />
+    <Content Include="Content\img\post\3.JPG" />
+    <Content Include="Content\img\post\4.JPG" />
+    <Content Include="Content\img\post\5.jpg" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Entity\DataContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -469,6 +474,7 @@
       <LastGenOutput>DataContext.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Robots.txt" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Content\css\fa\css\all.css" />
     <Content Include="Content\css\fa\webfonts\fa-brands-400.svg" />
@@ -481,10 +487,6 @@
     <Content Include="Content\img\person\person1.jpg" />
     <Content Include="Content\img\person\person2.jpg" />
     <Content Include="Content\img\person\person3.jpg" />
-    <Content Include="Content\img\post\06-1-1440x1080.jpg" />
-    <Content Include="Content\img\post\07-1-1060x596.jpg" />
-    <Content Include="Content\img\post\12-1060x1484.jpg" />
-    <Content Include="Content\img\post\unnamed.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -495,6 +497,7 @@
     <Compile Include="Controllers\AsideController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SeoController.cs" />
     <Compile Include="Controllers\SubscriberController.cs" />
     <Compile Include="Entity\Admin.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
@@ -535,6 +538,9 @@
     <Compile Include="Entity\Smtp.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Social.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Subscriber.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -558,8 +564,10 @@
     <Compile Include="Models\CreateMD5.cs" />
     <Compile Include="Models\EditCommentModel.cs" />
     <Compile Include="Models\Mail.cs" />
+    <Compile Include="Models\OptionModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\SessionAdminModel.cs" />
     <Compile Include="Models\SmtpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -667,6 +675,13 @@
     <Content Include="Views\Account\SmtpSettings.cshtml" />
     <Content Include="Views\Account\PasswordSettings.cshtml" />
     <Content Include="Views\Blog\Categorie.cshtml" />
+    <Content Include="Views\Account\General.cshtml" />
+    <Content Include="Views\Home\HeaderItem.cshtml" />
+    <Content Include="Views\Home\NavbarItem.cshtml" />
+    <Content Include="Views\Home\ContactPageSocial.cshtml" />
+    <Content Include="Views\Account\DeleteResponse.cshtml" />
+    <Content Include="Views\Account\EditResponse.cshtml" />
+    <Content Include="Views\Seo\MetaTags.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

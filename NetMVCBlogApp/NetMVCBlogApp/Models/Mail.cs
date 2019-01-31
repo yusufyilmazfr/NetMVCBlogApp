@@ -43,7 +43,7 @@ namespace NetMVCBlogApp.Models
             mailMessage.From = new MailAddress(smtp.UserName);
             mailMessage.To.Add(smtp.ReceiverName);
             mailMessage.Subject = string.Format("Hey! You have a new message. From: {0}", contactMailModel.Name);
-            mailMessage.Body = contactMailModel.Text;
+            mailMessage.Body = string.Format("{0}\nfrom: {1}", contactMailModel.Text,contactMailModel.Mail);
 
             SmtpClient smtpClient = new SmtpClient();
 

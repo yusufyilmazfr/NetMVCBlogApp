@@ -25,15 +25,16 @@ namespace NetMVCBlogApp.Entity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Comment> Comment { get; set; }
         public virtual DbSet<Logs> Logs { get; set; }
-        public virtual DbSet<Options> Options { get; set; }
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Subscriber> Subscriber { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<CommentResponse> CommentResponse { get; set; }
         public virtual DbSet<Smtp> Smtp { get; set; }
+        public virtual DbSet<Social> Social { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Options> Options { get; set; }
     }
 }
