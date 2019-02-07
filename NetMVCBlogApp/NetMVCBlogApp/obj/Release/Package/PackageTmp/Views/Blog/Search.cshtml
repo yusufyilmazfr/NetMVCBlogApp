@@ -1,0 +1,69 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
+
+@{
+    Layout = "~/Views/Shared/header-footer.cshtml";
+}
+
+
+    @if (Model.Count() == 0)
+    {
+        <div style="padding:20px 0; margin: 20px 0; display:flex; align-items:center; justify-content:center; box-shadow: 2px 2px 4px 0px #888;">
+            <h1 style="font-size:18px; font-family: 'Inconsolata', monospace; color: #333">
+                No shares found according to the word you are looking for
+            </h1>
+        </div>
+
+        return;
+    }
+
+<!-- Content Start -->
+<div id="Content">
+
+    <!-- Article Start -->
+    <div class="article">
+
+        @foreach (var post in Model)
+        {
+            <div class="blog">
+                <div class="blog-header">
+                    <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">
+                        <h1>@post.Name</h1>
+                    </a>
+                </div>
+
+
+                <div class="blog-image">
+                    <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">
+                        <img src="~/Content/img/post/@post.Image" alt="">
+                    </a>
+                </div>
+                <div class="blog-text">
+                    @*@post.Text.Substring(0, 350)...*@
+                    @{
+                        if (post.Text.Length > 350)
+                        {
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text.Substring(0, 350)))
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text))
+                            </p>
+                        }
+                    }
+                </div>
+                <div class="blog-read-more">
+                    <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">Read More <i class="fal fa-arrow-right" style="font-size: 14px;"></i></a>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+    <!-- Article End  -->
+
+</div>
+<!-- Content End -->

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
+
+<!-- Content Start -->
+<div id="Content">
+
+
+    <!-- Article Start -->
+    <div class="article">
+
+        @foreach (var post in Model)
+        {
+            <div class="blog">
+                <div class="blog-header">
+                    <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">
+                        <h1>@post.Name</h1>
+                    </a>
+                </div>
+
+                
+                <div class="blog-image">
+                    <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">
+                        <img src="~/Content/img/post/@post.Image" alt="@post.Name">
+                    </a>
+                </div>
+                <div class="blog-text">
+                    @*@post.Text.Substring(0, 350)...*@
+                    @{
+                        if (post.Text.Length > 350)
+                        {
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text.Substring(0, 350)))
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @Html.Raw(HttpUtility.HtmlDecode(post.Text))
+                            </p>
+                        }
+                    }
+                </div>
+                <div class="blog-read-more">
+                    <a href="@Url.Action("Details","Blog", new { blog=post.SeoLink, id=post.ID })">Read More <i class="fal fa-arrow-right" style="font-size: 14px;"></i></a>
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+    <!-- Article End  -->
+
+    <!-- Aside Start -->
+    @Html.Action("Index","Aside")
+    <!-- Aside End -->
+
+</div>
+<!-- Content End -->

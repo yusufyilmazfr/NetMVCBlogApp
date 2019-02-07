@@ -70,3 +70,6 @@ D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\Ne
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.dll
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.pdb
 D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.FileSystem.dll
+D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Program Files\GitHub\NetMVCBlogApp\NetMVCBlogApp\NetMVCBlogApp\obj\Release\NetMVCBlogApp.csprojAssemblyReference.cache

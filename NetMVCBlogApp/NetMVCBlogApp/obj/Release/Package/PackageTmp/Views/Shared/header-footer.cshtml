@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    @Html.Action("MetaTags", "Seo", new { @value = ViewBag.Value})
+    
+    <link rel="shortcut icon" href="~/Content/img/icon/icon.png" />
+    <link href="https://fonts.googleapis.com/css?family=K2D" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/fa/css/all.css">
+    <script src="~/Content/js/jquery.js"></script>
+    @RenderSection("ck_editor", false)
+
+
+    <title>@ViewBag.Title</title>
+
+
+</head>
+
+
+<body>
+
+    <!-- Header Start -->
+    <div id="Header">
+
+        @Html.Action("HeaderItem", "Home")
+
+        <div class="nav">
+
+            @Html.Action("NavbarItem", "Home")
+
+            <div class="nav-bar">
+                <ul class="nav-bar-item">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="/About-Me">About Me</a></li>
+                    <li><a href="/Contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="search">
+                <form action="/Blog/Search" method="GET">
+                    <div class="search-item">
+                        <input class="search-text" type="text" name="q" id="q" placeholder="search something">
+                        <label for="search"><i class="fal fa-search"></i></label>
+                    </div>
+                </form>
+            </div>
+            <div class="hamburger-menu">
+                <div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    @RenderBody()
+
+    <!-- Footer Start -->
+
+    <div class="dummy" style="margin-top:50px"></div>
+    <div id="Footer">
+        <div class="mail-signup">
+            <div class="mail-signup-text">
+                <h3>
+                    <span>
+                        Stay Updated
+                        <i class="fal fa-envelope" style="font-size: 30px;"></i>
+                    </span>
+                </h3>
+                <p>Subscribe your e-mail address and get to know about fresh stuff!</p>
+            </div>
+            <div class="signup-form">
+                <form name="mail-register">
+                    <input required type="email" name="subscribe" id="subscribe" placeholder="Your Email Address">
+                    <button id="subscribe-signup" class="subscribe-signup" type="submit">Sign up</button>
+                </form>
+
+                <script>
+
+                    document.getElementById('subscribe-signup').addEventListener('click', function (e) {
+
+                        let data = {
+                            email: document.getElementById('subscribe').value
+                        }
+
+
+                        let xhttp = new XMLHttpRequest();
+
+                        xhttp.open('POST', '/Subscriber/Add/');
+
+                        xhttp.onload = () => {
+                            if (xhttp.status == 200) {
+                                if (xhttp.responseText == "yes") {
+                                    alert("Success! <3");
+                                }
+                                else {
+                                    alert("Ops!, try again later :(");
+                                }
+                            }
+                        }
+
+                        xhttp.setRequestHeader('Content-type', 'application/json');
+
+                        xhttp.send(JSON.stringify(data));
+
+                        e.preventDefault();
+
+                    });
+
+                </script>
+            </div>
+        </div>
+        <div class="footer-text">
+            <h4>
+                <i class="fal fa-code" style="font-size: 20px; margin-right: 5px;"></i>
+                Coded By <a style="color:#333; box-shadow: inset 0 -7px 0 #FFFC7F;" target="_blank" href="http://www.yusufyilmaz.org">
+                    Yusuf
+                    Yılmaz
+                </a>
+                <!-- <i class="fal fa-code" style="font-size: 20px; margin-left: 20px"></i> -->
+            </h4>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+</body>
+
+</html>

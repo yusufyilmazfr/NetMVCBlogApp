@@ -1,0 +1,69 @@
+﻿@model NetMVCBlogApp.Entity.CommentResponse
+@{
+    ViewBag.Title = "EditComment";
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="header col-md-offset-2">
+            <h4 class="title">Edit Comment</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="content">
+                    <form id="user-form" method="post">
+                        @Html.HiddenFor(model => model.ID)
+                        @Html.HiddenFor(model => model.Image)
+                        @Html.HiddenFor(model=>model.AddedDate)
+                        @Html.HiddenFor(model=>model.CommentID)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mail (disabled)</label>
+                                    @Html.TextBoxFor(model => model.Mail, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Text</label>
+                                    @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = 10 })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(model => model.isValid, new { @class = "custom-control-input" })
+                                    <label class="custom-control-label" for="isValid">on the homepage?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-fill pull-right" id="send">Update Comment</button>
+                        <div class="clearfix"></div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type='hidden'][name='isValid']").remove();
+    });
+</script>

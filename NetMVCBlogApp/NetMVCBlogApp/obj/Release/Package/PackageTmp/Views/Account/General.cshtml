@@ -1,0 +1,87 @@
+﻿@model NetMVCBlogApp.Models.OptionModel
+
+@{
+    ViewBag.Title = "General";
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Edit Web Options</h4>
+            </div>
+            <div class="content">
+                @using (Html.BeginForm("General", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(model => model.ID)
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title)
+                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @required = "required", @maxlength = "100" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Lang)
+                                @Html.TextBoxFor(model => model.Lang, new { @class = "form-control", @required = "required", @maxlength = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HeaderText)
+                                @Html.TextAreaFor(model => model.HeaderText, new { @class = "form-control", @required = "required", @rows = 1, @maxlength = "250" })
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="margin-top:10px">
+                            <div class="form-group">
+                                <label>Logo</label>
+                                <input type="file" name="Logo" id="Logo" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2" style="margin-top:23px">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-fill pull-right" id="send">Update Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<script>
+        $(document).ready(function () {
+
+            $("#send").click(function (e) {
+
+
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/Account/General',
+                    data: {
+                        ID: $("#ID").val(),
+                        Title: $("#Title").val(),
+                        Lang: $("#Lang").val(),
+                        HeaderText: $("#HeaderText").val()
+                    },
+                    type: 'POST',
+                    success: function (e) {
+                        if (e == 'failed')
+                            alert('ops!')
+                        else
+                            alert('yes <3');
+                    }
+                })
+
+            });
+
+        });
+    </script>
+*@

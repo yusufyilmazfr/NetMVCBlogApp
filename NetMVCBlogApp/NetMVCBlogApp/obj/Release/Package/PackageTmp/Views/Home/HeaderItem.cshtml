@@ -1,0 +1,8 @@
+﻿@model NetMVCBlogApp.Models.OptionModel
+
+<div class="header-item">
+    <img src="data:image/jpeg;base64,@Convert.ToBase64String(ViewBag.Logo)" alt="@Model.HeaderText" class="logo">
+    <p class="header-description">
+        @Model.HeaderText
+    </p>
+</div>

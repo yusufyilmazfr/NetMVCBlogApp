@@ -115,9 +115,9 @@
       <End Role="CommentResponse" EntitySet="CommentResponse" />
     </AssociationSet>
     <EntitySet Name="Smtp" EntityType="BlogDBModel.Smtp" />
-    <EntitySet Name="Options" EntityType="BlogDBModel.Options" />
     <EntitySet Name="Social" EntityType="BlogDBModel.Social" />
     <EntitySet Name="Admin" EntityType="BlogDBModel.Admin" />
+    <EntitySet Name="Options" EntityType="BlogDBModel.Options" />
   </EntityContainer>
   <EntityType Name="CommentResponse">
     <Key>
@@ -161,16 +161,6 @@
     <Property Name="ReceiverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Port" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="Options">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Lang" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="HeaderText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Social">
     <Key>
       <PropertyRef Name="Facebook" />
@@ -204,5 +194,17 @@
     <Property Name="ShortDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Options">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Lang" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="HeaderText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="230" FixedLength="false" Unicode="true" />
+    <Property Name="Tags" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

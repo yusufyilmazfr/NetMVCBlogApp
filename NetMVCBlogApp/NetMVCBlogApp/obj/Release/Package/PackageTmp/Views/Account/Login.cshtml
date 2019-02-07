@@ -1,0 +1,107 @@
+﻿@model NetMVCBlogApp.Models.AdminLoginModel
+@{
+    Layout = null;
+    string imageData = ((byte[])ViewBag.ProfileImage) != null ? Convert.ToBase64String((byte[])ViewBag.ProfileImage) : "#";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link rel="stylesheet" href="~/Content/css/admin.css">
+    <link rel="stylesheet" href="~/Content/css/fa/css/all.css">
+
+    <script src="~/Content/js/jquery.js"></script>
+
+    <title>Admin</title>
+</head>
+
+<body>
+
+    <div class="login-content">
+        <form id="login-form" name="login-form">
+            <div class="login-img">
+                <img src="data:image/jpeg;base64,@imageData" alt="admin-image">
+            </div>
+            <div class="login-uname">
+                <div style="width: 30px ;display: inline-block;">
+                    <label for="username">
+                        <i class="fal fa-user-check"></i>
+                    </label>
+                </div>
+                <input name="username" id="username" type="text" placeholder="John Mic" required>
+            </div>
+            <div class="login-passwd">
+                <div style="width: 30px ;display: inline-block;">
+                    <label for="password">
+                        <i class="fal fa-key"></i>
+                    </label>
+                </div>
+                <input name="password" id="password" type="password" placeholder="*******" required>
+            </div>
+            <div>
+                <button type="submit" class="login-btn" id="login-btn">Login</button>
+            </div>
+        </form>
+
+        <div style="width:400px; margin: 10px auto 0 auto; text-align:center; ">
+            <a href="javascript:void(0)" id="forget" style="text-decoration:none; color: #595959;">I forgot my password</a>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#forget").click(function (e) {
+
+                e.preventDefault();
+
+                $.ajax({
+
+                    url: '/Account/ForgetPassword',
+                    type: 'POST',
+                    success: function (data) {
+                        if (data == "failed") {
+                            alert(data)
+                        }
+                        else
+                            alert("new password successfully sent to the email");
+                    }
+
+                })
+            })
+
+
+            $("#login-form").submit(function (e) {
+
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/Account/Login/',
+                    data: {
+                        username: $("#username").val(),
+                        password: $("#password").val()
+                    },
+                    type: 'POST',
+                    success: function (data) {
+
+                        if (data == 'failed')
+                            alert('Invalid username or password!');
+                        else
+                            document.location.href = '/Account';
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

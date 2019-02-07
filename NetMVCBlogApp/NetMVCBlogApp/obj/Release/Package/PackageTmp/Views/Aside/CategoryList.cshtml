@@ -1,0 +1,15 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Category>
+
+<div class="categories">
+    <h2 class="categories-header">
+        <span>
+            Categories
+        </span>
+    </h2>
+    <ul class="category-list">
+        @foreach (var category in Model)
+        {
+            <li><a href="@Url.Action("Categorie","Blog",new { name = new NetMVCBlogApp.Models.CreateFriendlyUrl().GenerateSlug(category.Name), Id = category.ID})">@category.Name</a></li>
+        }
+    </ul>
+</div>

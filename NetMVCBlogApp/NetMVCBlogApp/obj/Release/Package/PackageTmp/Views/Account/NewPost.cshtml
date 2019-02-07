@@ -1,0 +1,64 @@
+﻿@model NetMVCBlogApp.Models.PostModel
+@{
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">New Post</h4>
+            </div>
+            <div class="content">
+                @using (Html.BeginForm("NewPost","Account",FormMethod.Post,new {@enctype="multipart/form-data" }))
+                {
+                    <div class="row" style="margin:50px 0 20px 0">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label for="uploadPhoto">select the image</label>
+                            <input type="file" name="uploadPhoto" id="uploadPhoto">
+                        </div>
+                    </div>
+
+                    @*<div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="form-group">
+                                    <label>Featured Picture</label>
+                                    <input class="form-control-file" type="file" />
+                                </div>
+                            </div>
+                        </div>*@
+
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="form-group">
+                                <label>Post Name</label>
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Post Name" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="form-group">
+                                <label>Post Text</label>
+                                @Html.TextAreaFor(model => model.Text, new { @class = "form-control ckeditor", placeholder = "Here can be your post content", rows = 7 })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-1">
+                            <label>Category Name</label>
+                            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <button type="submit" class="btn btn-info btn-fill pull-right" id="create-post">Create new post</button>
+                    </div>
+                    <div class="clearfix"></div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

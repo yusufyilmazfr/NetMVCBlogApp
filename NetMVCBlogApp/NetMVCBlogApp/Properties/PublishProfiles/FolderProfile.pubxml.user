@@ -22,10 +22,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/NetMVCBlogApp.dll">
-      <publishTime>01/31/2019 03:55:52</publishTime>
+      <publishTime>01/31/2019 04:49:46</publishTime>
     </File>
     <File Include="bin/NetMVCBlogApp.pdb">
-      <publishTime>01/31/2019 03:55:52</publishTime>
+      <publishTime>01/31/2019 04:49:46</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>12/13/2017 22:09:38</publishTime>
@@ -172,22 +172,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/13/2017 22:09:38</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>01/02/2018 12:16:32</publishTime>
+      <publishTime>02/01/2018 12:16:32</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>01/02/2018 12:16:56</publishTime>
+      <publishTime>02/01/2018 12:16:56</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Deployment.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Razor.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="Content/ckeditor/adapters/jquery.js">
       <publishTime>11/30/2018 15:39:11</publishTime>
@@ -1444,7 +1444,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2018 10:56:22</publishTime>
     </File>
     <File Include="Content/img/admin.jpg">
-      <publishTime>07/12/2018 00:14:54</publishTime>
+      <publishTime>12/07/2018 00:14:54</publishTime>
     </File>
     <File Include="Content/img/icon/icon.png">
       <publishTime>01/30/2019 20:55:02</publishTime>
@@ -1537,7 +1537,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/25/2018 13:55:39</publishTime>
     </File>
     <File Include="Views/Account/Categories.cshtml">
-      <publishTime>01/12/2018 16:27:06</publishTime>
+      <publishTime>12/01/2018 16:27:06</publishTime>
     </File>
     <File Include="Views/Account/Comments.cshtml">
       <publishTime>01/22/2019 20:36:26</publishTime>
@@ -1546,7 +1546,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/29/2018 23:27:55</publishTime>
     </File>
     <File Include="Views/Account/DeleteComment.cshtml">
-      <publishTime>01/12/2018 21:55:34</publishTime>
+      <publishTime>12/01/2018 21:55:34</publishTime>
     </File>
     <File Include="Views/Account/DeletePost.cshtml">
       <publishTime>11/29/2018 23:08:22</publishTime>
@@ -1555,13 +1555,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/22/2019 20:12:07</publishTime>
     </File>
     <File Include="Views/Account/EditCategorie.cshtml">
-      <publishTime>01/12/2018 16:55:03</publishTime>
+      <publishTime>12/01/2018 16:55:03</publishTime>
     </File>
     <File Include="Views/Account/EditComment.cshtml">
       <publishTime>01/22/2019 00:35:40</publishTime>
     </File>
     <File Include="Views/Account/EditPost.cshtml">
-      <publishTime>01/12/2018 21:49:15</publishTime>
+      <publishTime>12/01/2018 21:49:15</publishTime>
     </File>
     <File Include="Views/Account/EditResponse.cshtml">
       <publishTime>01/22/2019 20:24:08</publishTime>
@@ -1570,13 +1570,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2019 23:23:53</publishTime>
     </File>
     <File Include="Views/Account/Index.cshtml">
-      <publishTime>01/31/2019 03:55:18</publishTime>
+      <publishTime>01/31/2019 04:47:50</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>01/30/2019 18:04:49</publishTime>
+      <publishTime>01/31/2019 04:48:48</publishTime>
     </File>
     <File Include="Views/Account/NewCategorie.cshtml">
-      <publishTime>01/12/2018 16:55:09</publishTime>
+      <publishTime>12/01/2018 16:55:09</publishTime>
     </File>
     <File Include="Views/Account/NewPost.cshtml">
       <publishTime>01/20/2019 00:36:16</publishTime>
@@ -1639,7 +1639,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/31/2019 03:48:28</publishTime>
     </File>
     <File Include="Views/Shared/admin.cshtml">
-      <publishTime>01/30/2019 20:51:25</publishTime>
+      <publishTime>01/31/2019 04:47:20</publishTime>
     </File>
     <File Include="Views/Shared/header-footer.cshtml">
       <publishTime>01/31/2019 03:47:46</publishTime>
@@ -1651,7 +1651,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/25/2018 14:00:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/31/2019 03:56:17</publishTime>
+      <publishTime>01/31/2019 04:49:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

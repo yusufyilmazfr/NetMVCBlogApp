@@ -1,0 +1,29 @@
+﻿@model NetMVCBlogApp.Entity.Category
+@{
+    ViewBag.Title = "DeleteCategorie";
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="card" style="text-align:center">
+            <div class="header">
+                <h4 class="title">Are you sure?</h4>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h3>@Model.Name</h3>
+                        <form method="post">
+                            <input type="hidden" value="@Model.ID" />
+                            <a href="/Account/Categories" class="btn" style="border:3px solid #9772D9; margin: 0  8px 0 8px">Omg! No, no, no :)) </a>
+                            <button type="submit" class="btn btn-danger">Delete </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

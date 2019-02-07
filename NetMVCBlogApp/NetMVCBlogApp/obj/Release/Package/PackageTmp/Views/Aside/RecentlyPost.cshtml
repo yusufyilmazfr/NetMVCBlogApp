@@ -1,0 +1,15 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Post>
+
+<div class="recent-posts">
+    <h2 class="recent-posts-header">
+        <span>
+            Recent Posts
+        </span>
+    </h2>
+    <ul class="category-list">
+        @foreach (var recently in Model)
+        {
+            <li><a href="@Url.Action("Details","Blog", new { blog=recently.SeoLink, id=recently.ID })">@recently.Name</a></li>
+        }
+    </ul>
+</div>

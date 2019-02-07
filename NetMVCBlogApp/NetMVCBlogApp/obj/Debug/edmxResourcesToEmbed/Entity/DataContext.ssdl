@@ -67,10 +67,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="70" Nullable="false" />
     <Property Name="Lang" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Logo" Type="image" />
     <Property Name="HeaderText" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar" MaxLength="230" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Post">
     <Key>

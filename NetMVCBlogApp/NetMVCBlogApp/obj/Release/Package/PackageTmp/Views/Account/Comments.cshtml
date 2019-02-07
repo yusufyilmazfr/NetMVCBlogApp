@@ -1,0 +1,85 @@
+﻿@model IEnumerable<NetMVCBlogApp.Entity.Comment>
+@{
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+
+
+<div class="card">
+    <div class="header">
+        <h4 class="title">Recent comments</h4>
+        <p class="category">You can delete and update comments from the right side.</p>
+    </div>
+    <div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+
+            <thead>
+                <tr>
+                    <th style="width:50px">Id</th>
+                    <th style="width:70px">Image</th>
+                    <th style="width:100px">Name</th>
+                    <th style="width:120px">Mail</th>
+                    <th>Content</th>
+                    <th style="width:80px">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var comment in Model)
+                {
+                    {
+                        string color = comment.isValid ? "#d0fdb4" : "#ffd2d2";
+
+                        <tr style="background-color: @color ">
+                            <td>@comment.ID</td>
+                            <td><img width="70" style="border-radius:100%" src="~/Content/img/person/@comment.Image" /></td>
+                            <td>@comment.Name</td>
+                            <td>@comment.Mail</td>
+                            <td>@comment.Text</td>
+                            <td class="td-actions text-right" style="display:flex; justify-content:flex-start">
+                                <a href="/Account/EditComment/@comment.ID" type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-sm" data-original-title="Edit Task">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="/Account/DeleteComment/@comment.ID" type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                                <a target="_blank" href="@string.Format("{0}/{1}-{2}#comments",Request.Url.Authority,comment.Post.SeoLink,comment.Post.ID)" class="btn btn-primary btn-simple btn-sm" type="button" data-original-title="See post">
+                                    <i class="far fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+                    foreach (var response in comment.CommentResponse.OrderByDescending(i => i.ID))
+                    {
+                        {
+                            string color = response.isValid ? "#d0fdb4" : "#ffd2d2";
+
+                            <tr style="background-color: @color">
+                                <td>@response.ID</td>
+                                <td><img width="70" style="border-radius:100%" src="~/Content/img/person/@response.Image" /></td>
+                                <td>@response.Name</td>
+                                <td>@response.Mail</td>
+                                <td>@response.Text</td>
+                                <td class="td-actions text-right" style="display:flex; justify-content:flex-start">
+                                    <a href="/Account/EditResponse/@response.ID" type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-sm" data-original-title="Edit Task">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="/Account/DeleteResponse/@response.ID" type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-sm" data-original-title="Remove">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                    <a target="_blank" href="@string.Format("{0}/{1}-{2}#comments",Request.Url.Authority,comment.Post.SeoLink,comment.Post.ID)" class="btn btn-primary btn-simple btn-sm" type="button" data-original-title="See post">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                }
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

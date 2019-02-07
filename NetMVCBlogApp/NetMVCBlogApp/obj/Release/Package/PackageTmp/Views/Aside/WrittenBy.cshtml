@@ -1,0 +1,22 @@
+﻿@model NetMVCBlogApp.Models.AdminDetailsModel
+
+<div class="author">
+    <div class="author-title">
+        <h6>
+            <span style="box-shadow: inset 0 -7px 0 #FFFC7F;">WRITTEN BY</span>
+        </h6>
+    </div>
+    <div class="author-info">
+        <div class="author-image">
+            <img src="data:image/jpg;base64, @Convert.ToBase64String(Model.Image)" alt="@Model.Name @Model.LastName">
+        </div>
+        <div class="author-description">
+            <h6>
+                <span style="font-weight: bold">@Model.Name @Model.LastName</span>
+            </h6>
+            <p>
+               @Model.ShortDescription
+            </p>
+        </div>
+    </div>
+</div>
